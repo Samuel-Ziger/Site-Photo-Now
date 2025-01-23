@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer {
+  @apply absolute bottom-[20px];
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  font-size: 16px;
+  overflow-x: hidden;
+  direction: ltr;
+  background-color: #f4f5f7;
+}
+
+.card {
+  border-radius: 6px;
+  box-shadow: 0 5px 20px rgba(var(173, 181, 217), 0.03);
+  background-color: #ffffff;
+  border: 1px solid #F1F2F6;
+}
+
+.card .card-header {
+  display: flex;
+  border-bottom: 1px solid #F1F2F6;
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+  padding: 20px 40px;
+}
+
+.card .card-body {
+  padding: 30px 40px 28px 40px;
+}
+
+.card-body-form .form-group label {
+  font-size: 14px;
+  line-height: 1.4285714286;
+  font-weight: 500;
+  color: #0A0A0A;
+}
+
+.card-body-form .form-group {
+  margin-bottom: 20px;
+
+  .form-control {
+    border: 1px solid #F1F2F6;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: none;
+    color: #0A0A0A;
+    box-shadow: 0 5px 20px transparent;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    height: 48px;
+
+    &:hover {
+      border-color: #EC4899;
+    }
+  }
+}
+
+
+.card .card-header h1,
+.card .card-header h2,
+.card .card-header h3,
+.card .card-header h4,
+.card .card-header h5,
+.card .card-header h6 {
+  font-size: 15px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #EC4899;
+  border-color: #EC4899;
+  border-radius: 6px;
+  white-space: nowrap;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  width: 100%;
+
+  &:hover {
+    color: #ffffff;
+    background-color: #D82573 !important;
+    border-color: #D82573;
+    cursor: pointer;
+  }
+
+  &:disabled,
+  .btn-primary.disabled {
+    color: #fff;
+    background-color: #EC4899;
+    border-color: #EC4899;
+    cursor: not-allowed;
+  }
+}
