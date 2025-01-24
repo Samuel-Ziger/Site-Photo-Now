@@ -1,0 +1,18 @@
+.scroll-modern {
+  scroll-behavior: smooth;
+}
+
+.scroll-modern::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-modern::-webkit-scrollbar-thumb {
+  background: #777;
+  border-radius: 20px;
+}
+
+.scroll-modern::-webkit-scrollbar-track {
+  //background: #ddd;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0px;
+}

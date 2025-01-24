@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  variables:
+    SENTRY_AUTH_TOKEN: "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"  # Certifique-se de remover isso depois de configurar no CodeBuild
+    SENTRY_PROJECT: "cabine-foto-front"  # Substitua pelo nome do seu projeto no Sentry
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 644347745739.dkr.ecr.sa-east-1.amazonaws.com
+      - REPOSITORY_URI=644347745739.dkr.ecr.sa-east-1.amazonaws.com/cabine-foto-front
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_PROJECT=$SENTRY_PROJECT -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"container-cabine-foto-front","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
+    - '**/*.map'  # Inclui os source maps nos artefatos, se necessário
+  base-directory: './dist'
