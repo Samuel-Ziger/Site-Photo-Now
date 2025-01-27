@@ -1,0 +1,253 @@
+<style type="text/css">@font-face {
+    font-family: 'Blackline';
+    src: url('https://cololido.com.br/archives/KH-Blackline-Script-Medium.woff') format('woff'),
+    url('https://cololido.com.br/archives/KH-Blackline-Script-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    }
+    
+    
+    body, h1, h2, h3, h4, h5, h6{font-family: farm-new,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #5E6971;}
+    
+    a, a:hover{
+    transition: .8s;}
+    
+    .menu_item {
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 500;
+    }
+    
+    #headerinterno {
+    position: absolute;}
+    
+    .navbar-nav>li>.menu_item::after {
+    content: '';
+    display: block;
+    background: url(https://cololido.com.br/images/home/volta-baixo.svg);
+    background-size: contain;
+    width: 45px;
+    background-repeat: no-repeat;
+    height: 25px;
+    margin: 0 auto;
+    float: none;
+    margin-top: 10px;
+    transition: .5s;
+    }
+    .navbar-nav>li>.menu_item:hover::after {
+    margin-top: 0px;
+    }
+    
+    .navbar-nav>li>.menu_item::before {
+    content: '';
+    display: block;
+    background: url(https://cololido.com.br/images/home/volta.svg);
+    background-size: contain;
+    width: 45px;
+    background-repeat: no-repeat;
+    transform: rotateX(180deg);
+    height: 25px;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    transition: .5s;
+    }
+    .navbar-nav>li>.menu_item:hover::before {
+    margin-bottom: 0px;
+    }
+    
+    .navbar-toggle .icon-bar {
+    border-color: #3f3f3f !important;}
+    
+    
+    .flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;}
+    
+    .wrap {
+    display: flex;
+    flex-wrap: wrap;}
+    
+    .cover {
+    background-size: cover;}
+    
+    .contain {
+    background-size: contain;}
+    
+    .botao1 .btn{
+    width: auto;
+    height: auto;
+    font-weight: bold;
+    letter-spacing: 3px;
+    background-color: #ffeedf;
+    color: #5e6971;
+    white-space: pre-wrap;
+    transition: .8s;}
+    
+    .botao1 .btn:hover {
+    background-color: #5E6971;
+    color: white;  transition: .8s;}
+    
+    .botao2 .btn{
+    width: auto;
+    height: auto;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #5e6971;
+    background-color: #c2e5f9;
+    white-space: pre-wrap;
+    transition: .8s;}
+    
+    .botao2 .btn:hover {
+    background-color: #5e6971;
+    color: white;transition: .8s;}
+    
+    .botaod .btn{
+    margin: 0 0 0 auto;}
+    
+    .botaoc .btn{
+    margin: 0 auto;
+    display: table;
+    float: none;}
+    
+    .shadow {
+    -webkit-box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.26);
+    box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.26);}
+    
+    @media (max-width: 767px) {
+    .m50 {font-size: 50px !important;}
+    .m40 {font-size: 40px !important;}
+    .m45 {font-size: 45px !important;}
+    .m35{font-size: 35px !important;}
+    .m30{font-size: 30px !important;}
+    .m17{font-size: 17px !important;}}
+    
+    .icon-bar{
+    border-color: gray !important;}
+    .navbar-toggle {
+    float: right;
+    border: 0px;}
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #00000026;
+    border-radius: 0;}
+    
+    @media (min-width: 992px) {.meia-largura-esq {
+    width: 485px;
+    margin: 0 0 0 auto;}}
+    
+    @media (min-width: 1170px) {.meia-largura-esq {
+    width: 585px;
+    margin: 0 0 0 auto;}}
+    
+    @media (min-width: 992px) {.meia-largura-dir {
+    width: 485px;
+    margin: 0 auto 0 0;}}
+    
+    @media (min-width: 1170px) {.meia-largura-dir {
+    width: 585px;
+    margin: 0 auto 0 0;}}
+    
+    
+    .delay1 {
+    animation-delay: 0.5s;
+    }
+    .delay2 {
+    animation-delay: 1s;
+    }
+    .delay3 {
+    animation-delay: 1.5s;
+    }
+    
+    #topofixo{
+    position: fixed;
+    z-index: 999999;
+    }
+    
+    .act {
+    border: 0;
+    background: transparent;
+    }
+    
+    .noact {
+    top: 0;
+    background: rgba(194, 229, 249, 0.95) !important;
+    }
+    
+    .act, .noact{
+    transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    }
+    
+    
+    .navbar-brand {
+    padding: 0;
+    }
+    
+    @media (max-width: 991px) {
+    .navbar-header {
+    float: none;
+    }
+    .navbar-left,.navbar-right {
+    float: none !important;
+    }
+    .navbar-toggle {
+    display: block;
+    }
+    .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+    display: none!important;
+    }
+    
+    .navbar-nav {
+    float: none!important;
+    margin-top: 7.5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+    .navbar-nav>li {
+    float: none;
+    }
+    .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    }
+    .collapse.in{
+    display:block !important;
+    }
+    
+    .navbar-brand {
+    display: inline-block;
+    float: none;
+    }
+    
+    .navbar-form.form-inline {
+    display: inline-block;
+    border-color: transparent;
+    margin: 4px;
+    padding: 5px;
+    }
+    
+    .navbar-form .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    }
+    
+    }
+    
