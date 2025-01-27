@@ -1,0 +1,4 @@
+{
+  "**/*": ["yarn lint:fix", "npx prettier . --write --ignore-unknown"],
+  "*.{ts}": ["yarn test:staged"]
+}

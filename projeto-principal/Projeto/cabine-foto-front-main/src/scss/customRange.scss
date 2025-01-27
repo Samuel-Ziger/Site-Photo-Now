@@ -1,0 +1,69 @@
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 18em;
+  height: 0.5em;
+  position: relative;
+  left: 4em;
+  border-radius: 5px;
+  background-color: white;
+  outline: none;
+}
+/* para o Fire Fox */
+#range::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+}
+
+/* para browsers da MS */
+#range::-ms-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+}
+
+#range::-webkit-slider-thumb {
+  all: unset; /* limpa os estilos iniciais */
+  -webkit-appearance: none; /* remove a aparencia padão */
+  border: none;
+  width: 35px;
+  height: 35px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: white;
+}
+input[type="range"] {
+  cursor: pointer;
+}
+
+input[type="range"],
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+/** 
+ * Use o pseudo-seletor "::-webkit-slider-runnable-track" para customizar o "trilho" do campo.
+ */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 200px;
+  height: 10px;
+  background: #1a86c8;
+}
+
+/** 
+ * Use o pseudo-seletor "::-webkit-slider-thumb" para customizar o "seletor" do campo.
+ */
+input[type="range"]::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -4.5px;
+  background-color: blue;
+  border-radius: 60px;
+}
