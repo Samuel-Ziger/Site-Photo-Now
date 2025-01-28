@@ -1,89 +1,346 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="pt-br" xml:lang="pt-br" > <!-- Declaração do tipo de documento HTML e definição do idioma para português do Brasil. -->
+    <head>
+        <title>Photo Now</title> <!-- Título da página exibido na aba do navegador. -->
+        <meta charset="UTF-8"> <!-- Define a codificação de caracteres para UTF-8. -->
+        <meta name="viewport" content="width=device-width"> <!-- Configuração para que o layout se ajuste a diferentes tamanhos de tela. -->
+        <meta name='description' content='Photo Now | Fotografia Profissional'> <!-- Descrição da página para mecanismos de busca. -->
+        <meta name='keywords' content=''> <!-- Palavras-chave para SEO (vazio neste caso). -->
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.2.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.2.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.2.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<!-- Links para ícones e estilos da página -->
+<link rel="icon" sizes="192x192" href="https://static.wixstatic.com/media/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png" type="image/png"/> <!-- Ícone de atalho para dispositivos Android. -->
+<link rel="shortcut icon" href="https://static.wixstatic.com/media/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png" type="image/png"/> <!-- Favicon para navegadores. -->
+<link rel="apple-touch-icon" href="https://static.wixstatic.com/media/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png" type="image/png"/> <!-- Ícone para dispositivos iOS. -->
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+<!-- Importação de arquivos CSS externos -->
+<link rel="stylesheet" type="text/css" href='\CSS\bootstrap.css' > <!-- Biblioteca Bootstrap. -->
+<link rel="stylesheet" type="text/css" href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css' > <!-- Ícones Glyphicons do Bootstrap. -->
+<link rel="stylesheet" type="text/css" href='\CSS\font-awesome.css' > <!-- Biblioteca Font Awesome para ícones. -->
+<link rel="stylesheet" type="text/css" href='\CSS\unidades.css'> <!-- Estilos personalizados para "unidades". -->
+<link rel="stylesheet" type="text/css" href='\CSS\animate.css' > <!-- Estilos para animações. -->
+<link rel="stylesheet" type="text/css"href="\css\INDEX.CSS"> <!-- Estilos gerais da página. -->
+<link rel="stylesheet" href="text/css"href="\css\global.css"> <!-- Estilos globais da página. -->
+
+</head>
+<body>
+<div id='page1'> <!-- Div principal que contém toda a página. -->
+<div class="container-fluid"  name="" id="Header-huxmu1lk5o" > <!-- Cabeçalho da página com layout fluido. -->
+    <link rel="stylesheet" href="https://use.typekit.net/jej3hrl.css"> <!-- Fonte personalizada via Typekit. -->
+<div class='container-fluid ' name='Container_671a17e5bd579' id='topofixo'> <!-- Container para o topo fixo da página. -->
+<div class='container flex' name='Container_671a17e5bd6a0' id='_61553b82b8b95_1632975746'> <!-- Conteúdo flexível no topo. -->
+    <div class=' col-xs-12 col-sm-4 col-md-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61553b87a9b3f_1632975751'> <!-- Coluna para o logo no topo. -->
+    <a id='ResponsiveImage-huxmu1lliz' class='col-xs-7 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' href='https://cololido.com.br/index' target='_self'> <!-- Link para a página inicial. -->
+        <!--logo pequena da navbar-->
+        <img  class='col-md-12 col-sm-12 col-xs-12 col-lg-12'  src='\IMG\logonova.png' alt=''> <!-- Logo pequeno. -->
+    </a>
+    <div class='clear'></div> <!-- Div para limpeza de floats. -->
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <div class=' col-xs-12 col-sm-12 col-md-9 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61553bf7c34bb_1632975863'> <!-- Coluna para o menu de navegação. -->
+    <nav class="navbar navbar-default menu " id="_61553bfa6f6e9_1632975866" > <!-- Barra de navegação do Bootstrap. -->
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+<div class="navbar-header"> <!-- Cabeçalho do menu. -->
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navabar1" aria-expanded="false" aria-controls="navabar1"> <!-- Botão para menus colapsados em telas pequenas. -->
+    <span class="sr-only"> </span> <!-- Texto somente para leitores de tela. -->
+    <span class="icon-bar">&nbsp;</span> <!-- Barra 1 do botão. -->
+    <span class="icon-bar">&nbsp;</span> <!-- Barra 2 do botão. -->
+    <span class="icon-bar">&nbsp;</span> <!-- Barra 3 do botão. -->
+</button>
+</div>
+
+<div id="navabar1" class="collapse navbar-collapse"> <!-- Conteúdo colapsável do menu. -->
+<ul class="nav navbar-nav"> <!-- Lista de itens do menu. -->
+    <li role="presentation" id="menuitem_671a17e5bdcd0"><a  href="/HTML/index.html" target="_self" style="background: none !important; color: rgba(255, 255, 255, 1) !important; text-decoration: none;font-family: Arial, sans-serif;">Home</a></li>
+    <li role="presentation" id="menuitem_671a17e5bddaf"><a  href="\HTML\index.html" target="_self" style="background: none !important; color: rgba(255, 255, 255, 1) !important; text-decoration: none;font-family: Arial, sans-serif;">Onde estamos</a></li> <!-- Link para "Onde estamos". -->
+    <li role="presentation" id="menuitem_671a17e5bde8f"><a  href="\HTML\index.html" target="_self" style="background: none !important; color: rgba(255, 255, 255, 1) !important; text-decoration: none;font-family: Arial, sans-serif;">Loja</a></li> <!-- Link para "Loja". -->
+    <li role="presentation" id="menuitem_671a17e5bdf80"><a  href="\HTML\index.html" target="_self" style="background: none !important; color: rgba(255, 255, 255, 1) !important; text-decoration: none;font-family: Arial, sans-serif;">Modelos</a></li> <!-- Link para "Modelos". -->
+    <li role="presentation" id="menuitem_671a17e5be05d"><a  href="\HTML\index.html" target="_self" style="background: none !important; color: rgba(255, 255, 255, 1) !important; text-decoration: none;font-family: Arial, sans-serif;">Área do Parceiro</a></li> <!-- Link para "Area do parceiro". -->
+    <a id='_6197cd2feba8a_1637338415' target='_self' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 btn'  href='https://www.photonow.com.br/' ><i class='fa '></i>&nbsp;seja um franqueado</a> <!-- Botão destacado para "Seja um franqueado". -->
+</ul>
+<div class="clear"></div> <!-- Limpeza de floats. -->
+</div>
+
+</nav>
+<div class='clear'></div> <!-- Limpeza de floats. -->
+</div>
+
+<style type="text/css">.navbar-nav .btn 
+    {width: auto;
+    background: #c2e5f9;
+    font-weight: 500;
+    font-size: 16px !important;
+    color: #5e6971;
+    padding: 15px 20px !important;
+    border: 2px solid white;
+    text-transform: uppercase;
+    margin: 15px;}
+    
+    .navbar-nav .btn:hover {    background: white;
+    color: #a88ba7;}</style> <!-- Estilos personalizados para o botão de "Seja um franqueado". -->
+<div class='clear'> 
+    </div>
+</div>
+<div class='clear'>
+        </div>
+    </div>
+</div>
+<div class='container-fluid  container_body' name='' id='GridPanel_671a17e5be74f' >
+    <div class='container-fluid ' name='Container_671a17e5be89a' id='_105057905_1639429667'>
+        <div class='container ' name='Container_671a17e5be9d9' id='_1262629552_1639429667'>
+            <div class='z9 col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 wow fadeInLeft' id='_4163577427_1639429667'>
+                <div class='col-xs-9 col-sm-6 col-md-5 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='parent_ResponsiveImage-huxmu1lpb7'>
+                    <div class='hint'><div class='flex col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_155998730_1639429669'>
+                        <div  id="text_671a17e5bef3e" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0" >
+                        </div>
+                            <div class='clear'>
+                                </div>
+                            </div>
+<style type="text/css">.hint {
+display: flex;
+flex-wrap: wrap;}
+
+.z9 {
+z-index: 9;}
+</style>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<img  id='ResponsiveImage-huxmu1lq9k' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0'  src='https://cololido.com.br/images/sobre/divisor.png' alt=''>
+<div class='clear'>
+    </div>
+</div>
+<style type="text/css">.wrap {
+display: flex;
+flex-wrap: wrap;}
+
+.secti{
+width: fit-content;
+float: none;
+margin: 0 auto;}
+
+.center-pills {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+font-size:14px;
+}
+
+.nav-pills > li{
+margin: 10px;
+}
+
+/*ABA*/
+.nav-pills > li > a{
+color: #a88ba7;
+text-decoration: none;
+border: 2px solid #c2e5f9;
+border-radius: 30px;
+}
+
+/*ABA ATIVA*/
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover{
+color: white;
+background-color: #dfa3a5 !important;
+border: 2px solid #dfa3a5;
+}
+
+
+
+/*ABA HOVER*/
+/* Define o estilo ao passar o mouse sobre os itens da navegação */
+.nav-pills > li > a:hover {
+    /* Cor de fundo ao passar o mouse */
+    background-color: #dfa3a5 !important;
+
+    /* Cor do texto ao passar o mouse */
+    color: white;
+}
+</style>
+
+<div class="" style="clear:both;" name="" id="footer_671a17e5c3230">
+    <!-- Início do rodapé -->
+    <div class='container' name='Container_671a17e5c32d0' id='_615675e335295_1633056227'>
+        <div class='col-xs-12 col-sm-6 col-md-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_615676005d973_1633056256'>
+            <!-- Imagem do logo -->
+            <img id='ResponsiveImage-huxmu1m3oj' class='col-xs-6 col-sm-6 col-md-7 col-xs-offset-3 col-sm-offset-0 col-md-offset-0' src='\IMG\logonova.png' alt=''>
+            <div class='clear'></div>
+        </div>
+        <div class='col-xs-12 col-sm-5 col-md-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_909865827_1633056410'>
+            <!-- Links do rodapé -->
+            <div id="text_671a17e5c37a3" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0">
+                <p>
+                    <span style="font-size: 12pt; letter-spacing: 4px; color: #c2e5f9;">
+                        <strong>NOSSO SITE</strong>
+                    </span>
+                </p>
+                <p>
+                    <span style="font-size: 12pt;">
+                        <span style="color: #5e6971;">
+                            <!-- Links para as páginas do site -->
+                            <a style="color: #5e6971;" href=\HTML\home.html>&#8594; Loja</a>
+                        </span><br>
+                        <span style="color: #5e6971;">
+                            <a style="color: #5e6971;" href="https://cololido.com.br/a-cololido">&#8594; A Photo Now</a>
+                        </span><br>
+                        <span style="color: #5e6971;">
+                            <a style="color: #5e6971;" href="https://cololido.com.br/modelos">&#8594; Modelos</a>
+                        </span><br>
+                        <span style="color: #5e6971;">
+                            <a style="color: #5e6971;" href="\HTML\maps.html">&#8594; Onde estamos</a>
+                        </span><br>
+                        <span style="color: #5e6971;">
+                            <a style="color: #5e6971;" href="https://cololido.com.br/cololido-festas">&#8594; Login</a>
+                        </span><br>
+                        <span style="color: #5e6971;">
+                            <a style="color: #5e6971;" href="https://cololido.com.br/seja-um-franqueado">&#8594; Seja um franqueado</a>
+                        </span><br>
+                        <span style="color: #5e6971;">
+                            <a style="color: #5e6971;" href=\HTML\home.html#contato>&#8594; Área do Parceiro</a>
+                        </span><br>
+                    </span>
+                </p>
+            </div>
+            <div class='clear'></div>
+        </div>
+        <div class='col-xs-12 col-sm-12 col-md-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_1727499485_1633057679'>
+            <div class='clear'></div>
+        </div>
+        <style type="text/css">
+            /* Ajuste de z-index para elemento específico */
+            #_61a959f59c74f_1638488565 {
+                z-index: 99999;
+            }
+        </style>
+        <div class='clear'></div>
+    </div>
+    <div class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_625dbcb27a147_1650310322'>
+        <!-- Direitos autorais -->
+        <div id="text_671a17e5c3f0c" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0">
+            <p style="text-align: center;">
+                <span style="font-size: 12px; color: #b1b9be;">
+                    &#174; 2021 Cololido - Marca registrada da RNL Franchising. Todos os direitos reservados.
+                    Powered by
+                    <a href="https://highsales.digital/" target="_blank" rel="noopener">
+                        <span style="color: #b1b9be;">
+                            <img src="https://cololido.com.br/images/logo/high-sales-agencia-marketing-cinza.svg" alt="High Sales" width="70">
+                        </span>
+                    </a>
+                </span>
+            </p>
+        </div>
+        <div class='clear'></div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<!-- Scripts da página -->
+<script type='text/javascript' src='/js/jquery-2.1.4.min.js'></script>
+<script type='text/javascript' src='/js/jquery-migrate-1.4.1.min.js'></script>
+<script type='text/javascript' src='/js/bootstrap.min.js'></script>
+
+<script id='anchor_code' type="text/javascript">
+    /* Script para rolar suavemente até o elemento ao clicar em um link */
+    $(function() {
+        $('a').on('click', function(e) {
+            if ($('[id*="' + this.hash.replace('#', '') + '"]').length > 0 &&
+                (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)) {
+                var target = this.hash;
+                var $target = $(target);
+
+                var verify = function() {
+                    if ($(target).length > 0 || target.indexOf("#") >= 0 && $(target).css('display') != 'none') {
+                        e.preventDefault();
+                        $('html, body').stop().animate({
+                            'scrollTop': $(target).offset().top
+                        }, 900, 'swing', function() {
+                            window.location.hash = target;
+                        });
+                        return false;
+                    } else
+                        return 1;
+                };
+                if ($(".navbar-collapse.in") && $(".navbar-collapse.in").collapse && $(this).closest(".navbar-collapse.in") && $(this).closest(".navbar-collapse.in").length > 0) {
+                    $(".navbar-collapse.in").on("hidden.bs.collapse", verify);
+                    $(".navbar-collapse.in").collapse("hide");
+                    $(".navbar-collapse.in").off("hidden.bs.collapse", verify);
+                    return false;
+                } else
+                    return verify();
+            }
+        });
+    });
+
+    /* Script para fechar o menu colapsado ao clicar em um link */
+    $(".navbar-collapse.in").on("click", function(e) {
+        if ($(e.target).is("a") && $(e.target).attr("class") != "dropdown-toggle") {
+            $(this).collapse("hide");
         }
-      });
-    </script>
-  </body>
+    });
+</script>
+
+<script type="text/javascript">
+    /* Script para alterar a classe de um elemento ao rolar a página */
+    $(window).scroll(function() {
+        if ($(window).scrollTop() <= 25) $('#topofixo').removeClass('noact').addClass('act');
+        else $('#topofixo').removeClass('act').addClass('noact');
+    }).trigger('scroll');
+
+    $(function() {
+        $('#topofixo').find('nav').on('show.bs.collapse', function() {
+            $('#topofixo').removeClass('act').addClass('noact');
+        });
+
+        $('#topofixo').find('nav').on('hide.bs.collapse', function() {
+            if ($(window).scrollTop() <= 25)
+                $('#topofixo').removeClass('noact').addClass('act');
+        });
+    });
+</script>
+
+<script type='text/javascript' src='/js/wow.js'></script>
+
+<script type="text/javascript">
+    /* Adiciona uma classe a imagens dentro de um elemento com a classe news-image */
+    $(function() {
+        $('.news-image:has(img)').addClass('aspect-ratio-overflow');
+    });
+</script>
+
+<script type="text/javascript">
+    /* Adiciona ou remove classes das abas de navegação */
+    $(function() {
+        $('.nav-tabs').addClass('nav-pills center-pills').removeClass('nav-tabs');
+    });
+</script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAm0Ac27C_n1zooRHwrTokpJDkJSO1ZmpU",
+      authDomain: "site-photo-now.firebaseapp.com",
+      projectId: "site-photo-now",
+      storageBucket: "site-photo-now.firebasestorage.app",
+      messagingSenderId: "350284546529",
+      appId: "1:350284546529:web:4255f0812c6cc9460b52a0",
+      measurementId: "G-F8JV466Q98"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</body>
 </html>

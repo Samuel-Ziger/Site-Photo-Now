@@ -1,3 +1,0 @@
-npx vue-tsc -b
-yarn test:ci
-yarn build
