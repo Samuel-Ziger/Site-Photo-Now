@@ -48,7 +48,7 @@ nav[id="Barra de navegação do Bootstrap"] .navbar { position:initial; }
 .menu  li + li{ id-filho:6938242;id-pai:6938238; }
 .menu_item { id-filho:6938243;id-pai:6938238;color:rgba(255, 255, 255, 1)!important;font-size:16px;text-align:center; }
 #GridPanel_671a17e5be74f { padding:0; }
-[name="Container_671a17e5be89a"] { background:url("/dist/IMG/telapreta.png");background-size:cover;background-position:center center;background-repeat:cover;border:0;border-style:solid; }
+[name="Container_671a17e5be89a"] { background:url("C:/Users/ziger/Desktop/site de venda photo now/dist/IMG/teste2.png");background-size:cover;background-position:center center;background-repeat:cover;border:0;border-style:solid; }
 [name="Container_671a17e5be89a"] { padding-top:300px !important; }
 @media screen and (max-width: 767px) { [name="Container_671a17e5be89a"] { padding-top:200px !important; }
  }
