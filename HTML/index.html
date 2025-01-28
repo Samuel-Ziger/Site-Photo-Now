@@ -26,7 +26,6 @@
 <div id='page1'> <!-- Div principal que contém toda a página. -->
 <div class="container-fluid"  name="" id="Header-huxmu1lk5o" > <!-- Cabeçalho da página com layout fluido. -->
     <link rel="stylesheet" href="https://use.typekit.net/jej3hrl.css"> <!-- Fonte personalizada via Typekit. -->
-
 <div class='container-fluid ' name='Container_671a17e5bd579' id='topofixo'> <!-- Container para o topo fixo da página. -->
 <div class='container flex' name='Container_671a17e5bd6a0' id='_61553b82b8b95_1632975746'> <!-- Conteúdo flexível no topo. -->
     <div class=' col-xs-12 col-sm-4 col-md-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61553b87a9b3f_1632975751'> <!-- Coluna para o logo no topo. -->
@@ -320,5 +319,28 @@ border: 2px solid #dfa3a5;
         $('.nav-tabs').addClass('nav-pills center-pills').removeClass('nav-tabs');
     });
 </script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAm0Ac27C_n1zooRHwrTokpJDkJSO1ZmpU",
+      authDomain: "site-photo-now.firebaseapp.com",
+      projectId: "site-photo-now",
+      storageBucket: "site-photo-now.firebasestorage.app",
+      messagingSenderId: "350284546529",
+      appId: "1:350284546529:web:4255f0812c6cc9460b52a0",
+      measurementId: "G-F8JV466Q98"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>
 </html>
