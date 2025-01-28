@@ -9,31 +9,31 @@
 [name="Container_671a17e5bd579"] { width:100%;padding:0; }
 [name="Container_671a17e5bd6a0"] { background-color:transparent !important;background-position:left top;background-repeat:repeat-x;border:0;border-style:solid; }
 [name="Container_671a17e5bd6a0"] { clear:both; }
-[id="_61553b87a9b3f_1632975751"] { background-color:transparent !important;background-position:left top;background-repeat:repeat-x;border:0;border-style:solid;padding-top:20px !important;padding-right:20px !important;padding-left:20px !important;padding-bottom:20px !important; }
-@media screen and (min-width: 992px) { [id="_61553b87a9b3f_1632975751"] { padding-top:20px !important;padding-right:20px !important;padding-bottom:20px !important;padding-left:20px !important; }
+[id="Coluna para o logo no topo"] { background-color:transparent !important;background-position:left top;background-repeat:repeat-x;border:0;border-style:solid;padding-top:20px !important;padding-right:20px !important;padding-left:20px !important;padding-bottom:20px !important; }
+@media screen and (min-width: 992px) { [id="Coluna para o logo no topo"] { padding-top:20px !important;padding-right:20px !important;padding-bottom:20px !important;padding-left:20px !important; }
  }
 #ResponsiveImage-huxmu1lliz { border:0; }
 #ResponsiveImage-huxmu1lliz > img { border-style:solid; }
 #ResponsiveImage-huxmu1lliz  img{ padding:0; }
-[id="_61553bf7c34bb_1632975863"] { background-color:transparent !important;background-position:left top;background-repeat:repeat-x;border:0;border-style:solid; }
-@media screen and (max-width: 767px) { [id="_61553bf7c34bb_1632975863"] { margin-top:-55px !important; }
-[id="_61553bf7c34bb_1632975863"] { padding-bottom:20px !important; }
+[id="Coluna para o menu de navegação."] { background-color:transparent !important;background-position:left top;background-repeat:repeat-x;border:0;border-style:solid; }
+@media screen and (max-width: 767px) { [id="Coluna para o menu de navegação."] { margin-top:-55px !important; }
+[id="Coluna para o menu de navegação."] { padding-bottom:20px !important; }
  }
-@media screen and (min-width: 768px) and (max-width: 991px) { [id="_61553bf7c34bb_1632975863"] { margin-top:-70px !important; }
+@media screen and (min-width: 768px) and (max-width: 991px) { [id="Coluna para o menu de navegação."] { margin-top:-70px !important; }
  }
 @media screen  and (min-width: 768px){ #navabar1  ul.navbar-nav{ width:100%;text-align:right; }
 #navabar1  ul.navbar-nav > *{ float:none;display:inline-block;vertical-align:middle; }
  }
 #navabar1  ul.navbar-nav > *{ vertical-align:middle; }
-@media  screen and (max-width: 767px){ [id="_61553bfa6f6e9_1632975866"]  .menu_item{ width:auto; }
+@media  screen and (max-width: 767px){ [id="Barra de navegação do Bootstrap"]  .menu_item{ width:auto; }
  }
-[id="_61553bfa6f6e9_1632975866"] { width:100%;margin-bottom:0;border-top-right-radius:0;border-bottom-right-radius:0;border-top-left-radius:0;border-bottom-left-radius:0;border-style:solid; }
-nav[id="_61553bfa6f6e9_1632975866"] .navbar { clear:both; }
+[id="Barra de navegação do Bootstrap"] { width:100%;margin-bottom:0;border-top-right-radius:0;border-bottom-right-radius:0;border-top-left-radius:0;border-bottom-left-radius:0;border-style:solid; }
+nav[id="Barra de navegação do Bootstrap"] .navbar { clear:both; }
 #navabar1  > ul{ width:100%; }
-nav[id="_61553bfa6f6e9_1632975866"].navbar  .container{ background-image:transparent !important; }
-nav[id="_61553bfa6f6e9_1632975866"] .dropdown-menu { border:none;background-color:transparent;box-shadow:none; }
-nav[id="_61553bfa6f6e9_1632975866"] .navbar-toggle .icon-bar{ border-color:#fff; }
-nav[id="_61553bfa6f6e9_1632975866"] .navbar { position:initial; }
+nav[id="Barra de navegação do Bootstrap"].navbar  .container{ background-image:transparent !important; }
+nav[id="Barra de navegação do Bootstrap"] .dropdown-menu { border:none;background-color:transparent;box-shadow:none; }
+nav[id="Barra de navegação do Bootstrap"] .navbar-toggle .icon-bar{ border-color:#fff; }
+nav[id="Barra de navegação do Bootstrap"] .navbar { position:initial; }
 [id="menuitem_671a17e5bdcd0"] { border-top-width:0;border-right-width:0;border-left-width:0;border-bottom-width:0;border-style:solid; }
 @media (max-width: 767px){ ul.nav.navbar-nav { width:100%; }
  }
