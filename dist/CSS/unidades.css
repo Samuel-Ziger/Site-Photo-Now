@@ -33,7 +33,7 @@ nav[id="Barra de navegação do Bootstrap"] .navbar { clear:both; }
 nav[id="Barra de navegação do Bootstrap"].navbar  .container{ background-image:transparent !important; }
 nav[id="Barra de navegação do Bootstrap"] .dropdown-menu { border:none;background-color:transparent;box-shadow:none; }
 nav[id="Barra de navegação do Bootstrap"] .navbar-toggle .icon-bar{ border-color:#fff; }
-nav[id="Barra de navegação do Bootstrap"] .navbar { position:initial; }
+nav[id="Barra de navegação do Bootstrap"] .navbar { position:fixed; }
 [id="menuitem_671a17e5bdcd0"] { border-top-width:0;border-right-width:0;border-left-width:0;border-bottom-width:0;border-style:solid; }
 @media (max-width: 767px){ ul.nav.navbar-nav { width:100%; }
  }
