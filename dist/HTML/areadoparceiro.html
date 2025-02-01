@@ -1,148 +1,597 @@
+
+
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre a Photo Now</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/jej3hrl.css">
-    <style>
-        .founder-img {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 50%;
+<html lang="pt-br" xml:lang="pt-br" > <!-- Declaração do tipo de documento HTML e definição do idioma para português do Brasil. -->
+    <head>
+        <title>Photo Now</title> <!-- Título da página exibido na aba do navegador. -->
+        <meta charset="UTF-8"> <!-- Define a codificação de caracteres para UTF-8. -->
+        <meta name="viewport" content="width=device-width"> <!-- Configuração para que o layout se ajuste a diferentes tamanhos de tela. -->
+        <meta name='description' content='Photo Now | Fotografia Profissional'> <!-- Descrição da página para mecanismos de busca. -->
+        <meta name='keywords' content=''> <!-- Palavras-chave para SEO (vazio neste caso). -->   
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" /><!-- Ajusta a página para dispositivos móveis (design responsivo) -->
+<!-- Links para ícones e estilos da página -->
+<link rel="icon" sizes="192x192" href="https://static.wixstatic.com/media/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png" type="image/png"/> <!-- Ícone de atalho para dispositivos Android. -->
+<link rel="shortcut icon" href="https://static.wixstatic.com/media/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png" type="image/png"/> <!-- Favicon para navegadores. -->
+<link rel="apple-touch-icon" href="https://static.wixstatic.com/media/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/691aa7_42945c3c417747fba8c93a2d95493354%7Emv2.png" type="image/png"/> <!-- Ícone para dispositivos iOS. -->
+
+<!-- Importação de arquivos CSS externos -->
+<link rel="stylesheet" type="text/css" href='\CSS\bootstrap.css' > <!-- Biblioteca Bootstrap. -->
+<link rel="stylesheet" type="text/css" href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css' > <!-- Ícones Glyphicons do Bootstrap. -->
+<link rel="stylesheet" type="text/css" href='\CSS\font-awesome.css' > <!-- Biblioteca Font Awesome para ícones. -->
+<link rel="stylesheet" type="text/css" href='\CSS\unidades.css'> <!-- Estilos personalizados para "unidades". -->
+<link rel="stylesheet" type="text/css" href='\CSS\animate.css' > <!-- Estilos para animações. -->
+<link rel="stylesheet" type="text/css"href="\CSS\index.css"> <!-- Estilos gerais da página. -->
+<link rel="stylesheet" href="text/css"href="\CSS\global.css"> <!-- Estilos globais da página. -->
+<link rel="stylesheet" href="text/css"href="\CSS\carousel.css"> <!-- Estilos para o carrossel de imagens. -->
+<link rel="stylesheet" href="text/css"href="\CSS\default.css"> <!-- Estilos padrão da página. -->
+<style>
+        /* Seu CSS aqui */
+        
+
+        .interactive-title {
+            font-size: 2.5em;
+            color: #333;
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
-        .navbar {
-            background-image: url('IMG/navbar-bg.jpg');
+
+        .interactive-title:hover {
+            color: #ff4081;
+            transform: scale(1.1);
+        }
+
+        .highlight {
+            color: #ff4081;
+        }
+        {scroll-behavior: smooth;
+            background-color: #f8f9fa;
+			
+    		
+
+        }
+        .banner {
+            height: 100vh;
+            background: url('/IMG/teste2.png') no-repeat center center;
             background-size: cover;
-            transition: top 0.3s;
-        }
-        .navbar-hidden {
-            top: -100px;
-        }
-        .founder-section {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: background 0.5s;
+            color: white;
+            text-align: center;
             position: relative;
+            overflow: hidden;
         }
-        .wave {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100px;
-            background: url('IMG/wave.svg') repeat-x;
-            background-size: cover;
-        }
-        .scroll-down {
-            margin-top: 20px;
-            cursor: pointer;
-        }
+       
+        
         .photo {
-            width: 300px;  
-            height: 300px;
-            border-radius: -50%;
+            width: 250px;  
+            height: 250px;
+            border-radius: 50%;
             object-fit: cover;
-            transition: transform 0.5s; }
+            transition: transform 0.5s;
+			
+        }
+        .photo:hover {
+            transform: scale(1.1);
+        }
+        .logo {
+            width: 200px;
+        }
+		.centralizar {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 30vh; /* Ocupa a altura total da tela */
+}
+.lideranca { display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */ }
+    /* Seu CSS aqui */
+    .section {
+            padding: 50px;
+        }
+   
+        
+        .scroll-down, .arrow {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+        .arrow.centralizar {
+            justify-content: center;
+        }
+        .photo-center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
+    <script>
+        function scrollToSection(id) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+</script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#" >
-                <img src="/IMG/logonova.png" alt="Logo" width="100">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="HTML/maps.html">Onde estamos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Loja</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Modelos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="HTML/login.html">Área do Parceiro</a></li>
-                </ul>
+<div id='page1'> <!-- Div principal que contém toda a página. -->
+<div class="container-fluid"  name="" id="Header-huxmu1lk5o" > <!-- Cabeçalho da página com layout fluido. -->
+    <link rel="stylesheet" href="https://use.typekit.net/jej3hrl.css"> <!-- Fonte personalizada via Typekit. -->
+<div class='container-fluid ' name='Container_671a17e5bd579' id='topofixo'> <!-- Container para o topo fixo da página. -->
+<div class='container flex' name='Container_671a17e5bd6a0' id='_61553b82b8b95_1632975746'> <!-- Conteúdo flexível no topo. -->
+    <div class=' col-xs-12 col-sm-4 col-md-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61553b87a9b3f_1632975751'> <!-- Coluna para o logo no topo. -->
+    <a id='ResponsiveImage-huxmu1lliz' class='col-xs-7 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' href='https://site-photo-now.web.app/#' target='_self'> <!-- Link para a página inicial. -->
+        <!--logo pequena da navbar-->
+        <img  class='col-md-12 col-sm-12 col-xs-12 col-lg-12'  src='\IMG\logonova.png' alt=''> <!-- Logo pequeno. -->
+    </a>
+    <div class='clear'></div> <!-- Div para limpeza de floats. -->
+    </div>
+
+    <div class=' col-xs-12 col-sm-12 col-md-9 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61553bf7c34bb_1632975863'> <!-- Coluna para o menu de navegação. -->
+    <nav class="navbar navbar-default menu " id="_61553bfa6f6e9_1632975866" > <!-- Barra de navegação do Bootstrap. -->
+
+<div class="navbar-header"> <!-- Cabeçalho do menu. -->
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navabar1" aria-expanded="false" aria-controls="navabar1"> <!-- Botão para menus colapsados em telas pequenas. -->
+    <span class="sr-only"> </span> <!-- Texto somente para leitores de tela. -->
+    <span class="icon-bar">&nbsp;</span> <!-- Barra 1 do botão. -->
+    <span class="icon-bar">&nbsp;</span> <!-- Barra 2 do botão. -->
+    <span class="icon-bar">&nbsp;</span> <!-- Barra 3 do botão. -->
+</button>
+</div>
+
+<div id="navabar1" class="collapse navbar-collapse"> <!-- Conteúdo colapsável do menu. -->
+    <ul class="nav navbar-nav"> <!-- Lista de itens do menu. -->
+    <li role="presentation" id="menuitem_671a17e5bdcd0"><a  href="https://site-photo-now.web.app/#" target="_blank" style="background: none !important; color: rgb(0, 0, 0) !important; text-decoration: none;font-family: Arial, sans-serif;">Home</a></li>
+    <li role="presentation" id="menuitem_671a17e5bddaf"><a  href="\HTML\maps.html" target="_self" style="background: none !important;color: rgb(0, 0, 0) !important; text-decoration: none;font-family: Arial, sans-serif;">Onde estamos</a></li> <!-- Link para "Onde estamos". -->
+    <li role="presentation" id="menuitem_671a17e5bde8f"><a  href="\HTML\ecomerce.html" target="_self" style="background: none !important; color: rgb(0, 0, 0) !important; text-decoration: none;font-family: Arial, sans-serif;">Loja</a></li> <!-- Link para "Loja". -->
+    <li role="presentation" id="menuitem_671a17e5bdf80"><a  href="" target="_self" style="background: none !important; color: rgb(0, 0, 0) !important; text-decoration: none;font-family: Arial, sans-serif;">Modelos</a></li> <!-- Link para "Modelos". -->
+    <li role="presentation" id="menuitem_671a17e5be05d"><a  href="\HTML\login.html" target="_self" style="background: none !important; color: rgb(0, 0, 0) !important; text-decoration: none;font-family: Arial, sans-serif;">Área do Parceiro</a></li> <!-- Link para "Area do parceiro". -->
+    <a id='_6197cd2feba8a_1637338415' target='_blank' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 btn'  href='https://www.photonow.com.br/'  ><i class='fa '></i>&nbsp;seja um franqueado</a> <!-- Botão destacado para "Seja um franqueado". -->
+</ul>
+<div class="clear"></div> <!-- Limpeza de floats. -->
+</div>
+
+</nav>
+<div class='clear'></div> <!-- Limpeza de floats. -->
+</div>
+<div class='clear'> 
+    </div>
+</div>
+<div class='clear'>
+        </div>
+    </div>
+</div>
+<div class='container-fluid  container_body' name='' id='GridPanel_671a17e5be74f' >
+    <div class='container-fluid ' name='Container_671a17e5be89a' id='_105057905_1639429667'>
+        <div class='container ' name='Container_671a17e5be9d9' id='_1262629552_1639429667'>
+            <div class='z9 col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 wow fadeInLeft' id='_4163577427_1639429667'>
+                <div class='col-xs-9 col-sm-6 col-md-5 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='parent_ResponsiveImage-huxmu1lpb7'>
+                    <div class='hint'><div class='flex col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_155998730_1639429669'>
+                        <div  id="text_671a17e5bef3e" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0" >
+                            </div>
+                                <div class='clear'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>          
+                </div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<img  id='ResponsiveImage-huxmu0bxg9' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0'  src='https://cololido.com.br/images/sobre/divisor.png' alt=''>
+<div class='clear'>
+    </div>
+</div>
+<div class='container flex' name='Container_671a17e3b57c5' id='_1115163306_1637355697'>
+    <div class=' col-xs-12 col-sm-6 col-md-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_488896068_1637355697'>
+        <div  id="text_671a17e3b5ab5" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0" >
+            <div class="container text-center mt-5">
+                <h2 class="interactive-title">Sobre a <span class="highlight">Photo Now</span></h2>
+            </div>
+            <p><span style="font-size: 12pt;">A Photo Now nasceu em Brasília em 2022 com a missão de tornar a <strong>fotografia instantânea acessível &amp; interativa</strong> Através de totens fotográficos modernos e intuitivos, a marca permite que os usuários editem e imprimam suas fotos em poucos segundos.</span></p>
+            <p><span style="font-size: 12pt;">Em pouco tempo, a Photo Now se tornou um grande sucesso, <strong>3 unidades próprias</strong> além de <strong>mais</strong> <strong>expandindo-se para mais de 80 franquias em todo o Brasil.</strong>Sua presença em shoppings, aeroportos e eventos reforça seu compromisso em registrar momentos especiais de forma prática e inovadora.
+                Com um modelo de negócio acessível e tecnologia de ponta, a Photo Now segue crescendo, oferecendo oportunidades para empreendedores e proporcionando experiências únicas para seus clientes.</span></p>
+
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class=' col-xs-12 col-sm-5 col-md-5 col-xs-offset-0 col-sm-offset-1 col-md-offset-1' id='_324092799_1637355697'>
+    <div  id="text_671a17e3b6111" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0" >
+        <h1><span style="font-size: 35px; color: #fbc1b5; line-height: 1;">uma <strong>promessa de Deus</strong> que se tornou realidade!</span></h1>
+    </div>
+    <div class=' col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61981764a4672_1637357412'>
+        <div  id="text_671a17e3b635f" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0" ><p><em><span style="font-size: 15pt;">São aqueles momentos em que estamos desanimados, sem forças, com uma visão negativa sobre as coisas e pessoas ao nosso redor, tristes, sem perspectivas, nos sentindo rejeitados e sozinhos.</span></em></p>
+<p><span style="font-size: 12pt;">&#8237;&#8237;Jeremias&#8236; &#8237;29:11</span></p>
+</div>
+<div class='clear'>   
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+    <div class='clear'>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p style="text-align: left;">
+                    <span class="m30" style="font-size: 50px; color: #a88ba7; line-height: 1;">
+                        <span style="color: #dfa3a5;"><strong>quem faz </strong></span>
+                        <span style="color: #a88ba7;">a Photo Now </span>
+                    </span>
+                </p>
             </div>
         </div>
-    </nav>
-    
-    <section class="container my-5 text-center">
-        <h2>Nossa História</h2>
-        <img src="\IMG\photonow.png" alt=""class="photo">
-        <p>A Photo Now nasceu em Brasília em 2022 com a missão de tornar a fotografia instantânea acessível e interativa. Através de totens fotográficos modernos e intuitivos, a marca permite que os usuários editem e imprimam suas fotos em poucos segundos.
+    </div>
+</div>
 
-        Em pouco tempo, a Photo Now se tornou um grande sucesso, expandindo-se para mais de 66 franquias em todo o Brasil. Sua presença em shoppings, aeroportos e eventos reforça seu compromisso em registrar momentos especiais de forma prática e inovadora.
-        
-        Com um modelo de negócio acessível e tecnologia de ponta, a Photo Now segue crescendo, oferecendo oportunidades para empreendedores e proporcionando experiências únicas para seus clientes.</p>
-    </section>
-    
-    <section class="container text-center my-5">
-        <img src="\IMG\lidereanca.jpg" alt=""class="photo">
-        <h2>Conheça o nosso time</h2>
-        <P>Os fundadores da Photo Now são empreendedores apaixonados por tecnologia e inovação. Conheça um pouco mais sobre cada um deles:</P>
-    </section>
-    
-    <section id="fundador1" class="founder-section bg-primary text-white">
-        <h3>Rodrigo Velasque</h3>
-        <img src="\IMG\rodrigo.jpg" alt="Fundador 1" class="founder-img">
-        <h1>Ceo e Fundador</h1>
-			<p>CEO e fundador da Photo Now, Rodrigo é um empreendedor apaixonado por tecnologia e inovação.ele lidera a empresa com foco em crescimento e expansão.</p>
-        <button class="btn btn-light scroll-down" onclick="scrollToNext('fundador2')">↓</button>
-        <div class="wave"></div>
-    </section>
-    
-    <section id="fundador2" class="founder-section bg-secondary text-white">
-        <h3>Lillian Velasque</h3>
-        <img src="\IMG\lillian.jpg" alt="Fundador 2" class="founder-img">
-        <h1>Diretora Financeira CFO</h1>
-        <p>Diretora financeira da Photo Now, Lillian é uma especialista em finanças e contabilidade Formada em Matemática. Ela lidera a área financeira da empresa com foco em resultados e crescimento sustentável.</p>
-        <button class="btn btn-light scroll-down" onclick="scrollToNext('fundador3')">↓</button>
-        <div class="wave"></div>
-    </section>
-    
-    <section id="fundador3" class="founder-section bg-success text-white">
-        <h3>Tiago Velasque</h3>
-        <img src="\IMG\tiago.jpg" alt="Fundador 3" class="founder-img">
-        <h1>Direto de RH CHRO</h1>
-        <p>Diretor de RH da Photo Now, Tiago é um especialista em recursos humanos e gestão de pessoas.Formado em Administração Ele lidera a área de RH da empresa com foco em desenvolvimento e engajamento dos colaboradores.</p>
-        <button class="btn btn-light scroll-down" onclick="scrollToNext('fundador4')">↓</button>
-        <div class="wave"></div>
-    </section>
-    
-    <section id="fundador4" class="founder-section bg-danger text-white">
-        <h3>Diego Mesquita</h3>
-        <img src="\IMG\diego.jpg" alt="Fundador 4" class="founder-img">
-        <h1>Diretor de Operações COO</h1>
-		<p>Diretor de operações da Photo Now, Diego é um especialista em logística e processos. ele lidera a área de operações da empresa com foco em eficiência e qualidade.</p>
-        <div class="wave"></div>
-    </section>
-    
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2025 Photo Now - Todos os direitos reservados.</p>
-    </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        let lastScrollTop = 0;
-        window.addEventListener("scroll", function() {
-            let navbar = document.getElementById("navbar");
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navbar.classList.add("navbar-hidden");
-            } else {
-                navbar.classList.remove("navbar-hidden");
+<section id="Liderança" class="section", >
+    <div class="container">
+        <h1 class="text-center">Conheça o nosso time</h1>
+        <img src="\IMG\lidereanca.jpg" class="photo img-fluid mx-auto d-block , photo-center">
+        <p class="text-center">Os fundadores da Photo Now são empreendedores apaixonados por tecnologia e inovação...</p>
+        <div class="arrow" onclick="scrollToSection('fundador1')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" role="presentation">
+                <path d="m1.00122,14.45485c0,-0.24438 0.10878,-0.48877 0.32411,-0.67587c0.4329,-0.37231 1.13663,-0.37231 1.56952,0l19.19382,16.50735l19.19381,-16.50735c0.4329,-0.37231 1.13663,-0.37231 1.56952,0s0.43289,0.97753 0,1.34983l-19.97969,17.18324c-0.43289,0.3723 -1.13662,0.3723 -1.56951,0l-19.97969,-17.18324c-0.21755,-0.1871 -0.32411,-0.43149 -0.32411,-0.67587l0.00222,0.00191z" fill="#000000"></path>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<section id="fundador1" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" data-aos="fade-right">
+                <h3>Rodrigo Velasque</h3>
+                <img src="\IMG\rodrigo.jpg" class="photo img-fluid">
+                <h1>CEO e Fundador</h1>
+                <p>CEO e fundador da Photo Now, Rodrigo é um empreendedor apaixonado por tecnologia e inovação. Ele lidera a empresa com foco em crescimento e expansão.</p>
+            </div>
+            <div class="col-md-6" data-aos="fade-left">
+                <h3>Lillian Velasque</h3>
+                <img src="\IMG\lillian.jpg" class="photo img-fluid">
+                <h1>Diretora Financeira (CFO)</h1>
+                <p>Diretora financeira da Photo Now, Lillian é uma especialista em finanças e contabilidade. Formada em Matemática, ela lidera a área financeira da empresa com foco em resultados e crescimento sustentável.</p>
+            </div>
+        </div>
+        <div class="arrow centralizar" onclick="scrollToSection('fundador2')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" role="presentation">
+                <path d="m1.00122,14.45485c0,-0.24438 0.10878,-0.48877 0.32411,-0.67587c0.4329,-0.37231 1.13663,-0.37231 1.56952,0l19.19382,16.50735l19.19381,-16.50735c0.4329,-0.37231 1.13663,-0.37231 1.56952,0s0.43289,0.97753 0,1.34983l-19.97969,17.18324c-0.43289,0.3723 -1.13662,0.3723 -1.56951,0l-19.97969,-17.18324c-0.21755,-0.1871 -0.32411,-0.43149 -0.32411,-0.67587l0.00222,0.00191z" fill="#000000"></path>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<section id="fundador2" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" data-aos="fade-right">
+                <h3>Tiago Velasque</h3>
+                <img src="\IMG\tiago.jpg" class="photo img-fluid">
+                <h1>Diretor de RH (CHRO)</h1>
+                <p>Diretor de RH da Photo Now, Tiago é um especialista em recursos humanos e gestão de pessoas. Formado em Administração, ele lidera a área de RH da empresa com foco em desenvolvimento e engajamento dos colaboradores.</p>
+            </div>
+            <div class="col-md-6" data-aos="fade-left">
+                <h3>Diego Mesquita</h3>
+                <img src="\IMG\diego.jpg" class="photo img-fluid">
+                <h1>Diretor de Operações (COO)</h1>
+                <p>Diretor de operações da Photo Now, Diego é um especialista em logística e processos. Ele lidera a área de operações da empresa com foco em eficiência e qualidade.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class='clear'>    
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='container-fluid ' name='Container_671a17e3baed2' id='_485306368_1637355697'>
+    <div class='container ' name='Container_671a17e3bb158' id='_483006904_1637355697'>
+        <div class=' col-xs-12 col-sm-6 col-md-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_483113663_1637355698'>
+            <div class='botao1 botaoc col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_2247754229_1633054647'><a id='_717005004_1633054647' target='_blank' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 btn'  href='https://www.instagram.com/photonow_oficial/' ><i class='fa '></i>&nbsp;siga-nos no insta</a><br>
+    <div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='container-fluid ' name='Container_671a17e36d4ac' id='contato'><img  id='ResponsiveImage-huxmu05lxm' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0'  src='' alt=''>
+<div class='container ' name='Container_671a17e36d79c' id='_615673135a57c_1633055507'>
+    <div class=' col-xs-12 col-sm-6 col-md-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61980f23e5630_1637355299'>
+        <div  id="text_671a17e36da74" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0" ><p>
+<br><span class="m30" style="font-size: 50px; color: #c2e5f9; line-height: 1;">que tal fazer parte<br />desta <span style="color: #a88ba7;"><strong>hist&#243;ria?</strong></span></span></p>
+</div>
+<div class=' col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_1953583724_1633057426'><img  id='ResponsiveImage-huxmu05nb5' class='col-xs-3 col-sm-4 col-md-2 col-xs-offset-9 col-sm-offset-7 col-md-offset-9'  src='' alt=''>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class=' col-xs-12 col-sm-6 col-md-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61980f5d83f1c_1637355357'>
+<div  id="text_671a17e36e0d1" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0" ><p><span style="font-size: 12pt;">A Photo Now nasceu em Brasília em 2022 com a missão de tornar a <strong>fotografia instantânea acessível &amp; interativa</strong> Através de totens fotográficos modernos e intuitivos, a marca permite que os usuários editem e imprimam suas fotos em poucos segundos.</span></p>
+<p><span style="font-size: 12pt;">Em pouco tempo, a Photo Now se tornou um grande sucesso, <strong>3 unidades próprias</strong> além de <strong>mais</strong> <strong>expandindo-se para mais de 80 franquias em todo o Brasil.</strong>Sua presença em shoppings, aeroportos e eventos reforça seu compromisso em registrar momentos especiais de forma prática e inovadora.
+
+Com um modelo de negócio acessível e tecnologia de ponta, a Photo Now segue crescendo, oferecendo oportunidades para empreendedores e proporcionando experiências únicas para seus clientes.</span></p>
+</div>
+<div class='botao1 col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_4267648972_1637355382'><a id='_3275601539_1637355382' target='_self' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 btn'  href='https://www.photonow.com.br/' ><i class='fa '></i>&nbsp;como funciona os Totens da Photo Now ?</a>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class=' col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_61981033d942e_1637355571'>
+<div class=' col-xs-12 col-sm-6 col-md-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_2228255748_1633055511'><br><br><br><br><br><br><br><br><br><br><br>
+<div  id="text_671a17e36e8fd" class="col-xs-12 col-sm-9 col-md-9 col-xs-offset-0 col-sm-offset-2 col-md-offset-2" ><p><span style="font-size: 14pt; color: #5e6971;"><a style="color: #5e6971;" href="/cdn-cgi/l/email-protection#2d4e4243594c59426d4e42414241444942034e4240034f5f"><span class="__cf_email__" data-cfemail="f2919d9c8693869db2919d9e9d9e9b969ddc919d9fdc9080">[email:contato@photonow.com.br]</span></a></span></p>
+<p><span style="color: #5e6971;"><a style="color: #5e6971;" href="https://api.whatsapp.com/send?phone=554130192006" target="_blank" rel="noopener"><span style="font-size: 14pt;">(61) 99134-8242</span></a></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 12pt; letter-spacing: 4px; color: #dfa3a5;"><strong>NOSSA SEDE</strong></span></p>
+<p><span style="font-size: 14pt;">Chácara 140 - St. Hab. Vicente Pires -</span><span style="font-size: 14pt;"><br /></span><span style="font-size: 14pt;"> Taguatinga, Brasília - DF <br /></span><span style="font-size: 14pt;">CEP 72007-595</span></p>
+</div>
+<div class='botao1 col-xs-12 col-sm-9 col-md-9 col-xs-offset-0 col-sm-offset-2 col-md-offset-2' id='_2252015312_1633055511'>
+<a id='_619860791_1633055511' target='_blank' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 btn'  href='https://www.instagram.com/photonow_oficial/' ><i class='fa '></i>&nbsp;<i class="fab fa-instagram"></i> nosso Instagram</a>    
+<a id='_1837013470_1633055511' target='_blank' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 btn' href="https://www.facebook.com/people/PhotoNow/61554833908013/"><i class='fa '></i>&nbsp;<i class="fab fa-facebook-f"></i> nosso Facebook</a><br>
+<a id='_1837013470_1633055511' target='_blank' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 btn' href="https://www.tiktok.com/@photonow_oficial?_t=ZM-8tUBTt7VU98&_r=1"><i class='fa '></i>&nbsp;<i class="fab fa-facebook-f"></i> nosso TikTok</a>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<div class='clear'>
+    </div>
+</div>
+<br>
+<div class='bloco-btn col-xs-12 col-sm-6 col-md-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_6156746a31833_1633055850'><a id='_253608717_1667821113' target='_self' class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 btn'  href='https://www.photonow.com.br/' ><i class='fa '></i>&nbsp;seja um franqueado</a>
+<style type="text/css">.bloco-btn .btn {
+width: 100%;
+background: #c2e5f9;
+font-weight: 500;
+font-size: 20px !important;
+color: #5e6971;
+padding: 20px 25px !important;
+border: 2px solid white;
+text-transform: uppercase;
+margin: 20px;
+}
+
+.bloco-btn .btn:hover {
+background: white;
+color: #a88ba7;
+border: 2px solid #c2e5f9 !important;
+}</style>
+
+<div class="" style="clear:both;" name="" id="footer_671a17e5c3230">
+<!-- Início do rodapé -->
+<div class='container' name='Container_671a17e5c32d0' id='_615675e335295_1633056227'>
+<div class='col-xs-12 col-sm-6 col-md-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_615676005d973_1633056256'>
+<!-- Imagem do logo -->
+<img id='ResponsiveImage-huxmu1m3oj' class='col-xs-6 col-sm-6 col-md-7 col-xs-offset-3 col-sm-offset-0 col-md-offset-0' src='IMG\logonova.png' alt=''>
+<div class='clear'></div>
+</div>
+<br>
+<div class='col-xs-12 col-sm-5 col-md-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_909865827_1633056410'>
+<!-- Links do rodapé -->
+<div id="text_671a17e5c37a3" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0">
+    <p>
+        <span style="font-size: 12pt; letter-spacing: 4px; color: #c2e5f9;">
+            <strong>Mais informações</strong>
+        </span>
+    </p>
+    <p>
+        <span style="font-size: 12pt;">
+            <span style="color: #5e6971;">
+                <!-- Links para as páginas do site -->
+                <a style="color: #5e6971;" href="">&#8594; Loja</a>
+            </span><br>
+            <span style="color: #5e6971;">
+                <a style="color: #5e6971;" href="\HTML\aphotonow.html">&#8594; A Photo Now</a>
+            </span><br>
+            <span style="color: #5e6971;">
+                <a style="color: #5e6971;" href="">&#8594; Modelos</a>
+            </span><br>
+            <span style="color: #5e6971;">
+                <a style="color: #5e6971;" href="\HTML\maps.html">&#8594; Onde estamos</a>
+            </span><br>
+            <span style="color: #5e6971;">
+                <a style="color: #5e6971;" href="\HTML\login.html">&#8594; Login</a>
+            </span><br>
+            <span style="color: #5e6971;">
+                <a style="color: #5e6971;" href="https://www.photonow.com.br/" target="_blank">&#8594; Seja um franqueado</a>
+            </span><br>
+            <span style="color: #5e6971;">
+                <a style="color: #5e6971;" href="\HTML\areadoparceiro.html" #contato>&#8594; Área do Parceiro</a>
+            </span><br>
+        </span>
+    </p>
+</div>
+<div class='clear'></div>
+</div>
+<div class='col-xs-12 col-sm-12 col-md-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_1727499485_1633057679'>
+<div class='clear'></div>
+</div>
+<style type="text/css">
+/* Ajuste de z-index para elemento específico */
+#_61a959f59c74f_1638488565 {
+    z-index: 99999;
+}
+</style>
+<div class='clear'></div>
+</div>
+<div class='col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0' id='_625dbcb27a147_1650310322'>
+<!-- Direitos autorais -->
+<div id="text_671a17e5c3f0c" class="col-xs-12 col-sm-12 col-md-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0">
+<p style="text-align: center;">
+    <span style="font-size: 12px; color: #b1b9be;">
+        &#174; 2025 Photo Now - Marca registrada da RNL Franchising. Todos os direitos reservados.
+        Powered by
+        <a href="https://highsales.digital/" target="_blank" rel="noopener">
+            <span style="color: #b1b9be;">
+                <img src="" alt="High Sales" width="70">
+            </span>
+        </a>
+    </span>
+</p>
+</div>
+<div class='clear'></div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<!-- Scripts da página -->
+<script type='text/javascript' src='/js/jquery-2.1.4.min.js'></script>
+<script type='text/javascript' src='/js/jquery-migrate-1.4.1.min.js'></script>
+<script type='text/javascript' src='/js/bootstrap.min.js'></script>
+
+<script id='anchor_code' type="text/javascript">
+/* Script para rolar suavemente até o elemento ao clicar em um link */
+$(function() {
+$('a').on('click', function(e) {
+if ($('[id*="' + this.hash.replace('#', '') + '"]').length > 0 &&
+    (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)) {
+    var target = this.hash;
+    var $target = $(target);
+
+    var verify = function() {
+        if ($(target).length > 0 || target.indexOf("#") >= 0 && $(target).css('display') != 'none') {
+            e.preventDefault();
+            $('html, body').stop().animate({
+                'scrollTop': $(target).offset().top
+            }, 900, 'swing', function() {
+                window.location.hash = target;
+            });
+            return false;
+        } else
+            return 1;
+    };
+    if ($(".navbar-collapse.in") && $(".navbar-collapse.in").collapse && $(this).closest(".navbar-collapse.in") && $(this).closest(".navbar-collapse.in").length > 0) {
+        $(".navbar-collapse.in").on("hidden.bs.collapse", verify);
+        $(".navbar-collapse.in").collapse("hide");
+        $(".navbar-collapse.in").off("hidden.bs.collapse", verify);
+        return false;
+    } else
+        return verify();
+}
+});
+});
+
+/* Script para fechar o menu colapsado ao clicar em um link */
+$(".navbar-collapse.in").on("click", function(e) {
+if ($(e.target).is("a") && $(e.target).attr("class") != "dropdown-toggle") {
+$(this).collapse("hide");
+}
+});
+</script>
+
+<script type="text/javascript">
+/* Script para alterar a classe de um elemento ao rolar a página */
+$(window).scroll(function() {
+if ($(window).scrollTop() <= 25) $('#topofixo').removeClass('noact').addClass('act');
+else $('#topofixo').removeClass('act').addClass('noact');
+}).trigger('scroll');
+
+$(function() {
+$('#topofixo').find('nav').on('show.bs.collapse', function() {
+$('#topofixo').removeClass('act').addClass('noact');
+});
+
+$('#topofixo').find('nav').on('hide.bs.collapse', function() {
+if ($(window).scrollTop() <= 25)
+    $('#topofixo').removeClass('noact').addClass('act');
+});
+});
+</script>
+
+<script type='text/javascript' src='/js/wow.js'></script>
+
+<script type="text/javascript">
+/* Adiciona uma classe a imagens dentro de um elemento com a classe news-image */
+$(function() {
+$('.news-image:has(img)').addClass('aspect-ratio-overflow');
+});
+</script>
+
+<script type="text/javascript">
+/* Adiciona ou remove classes das abas de navegação */
+$(function() {
+$('.nav-tabs').addClass('nav-pills center-pills').removeClass('nav-tabs');
+});
+</script>
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+apiKey: "AIzaSyAm0Ac27C_n1zooRHwrTokpJDkJSO1ZmpU",
+authDomain: "site-photo-now.firebaseapp.com",
+projectId: "site-photo-now",
+storageBucket: "site-photo-now.firebasestorage.app",
+messagingSenderId: "350284546529",
+appId: "1:350284546529:web:4255f0812c6cc9460b52a0",
+measurementId: "G-F8JV466Q98"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+</script>
+<script>
+// Compatibilidade com navegadores antigos
+if (window.attachEvent) { 
+window.attachEvent("onload", asyncLoad); 
+} else { 
+window.addEventListener("load", asyncLoad, false); 
+}
+})();
+<script>
+        function scrollToSection(id) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
             }
-            lastScrollTop = scrollTop;
-        });
-
-        function scrollToNext(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
         }
     </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</script>
 </body>
 </html>

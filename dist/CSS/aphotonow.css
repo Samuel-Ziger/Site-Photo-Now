@@ -1,0 +1,407 @@
+@font-face {
+    font-family: 'Blackline';
+    src: url('https://cololido.com.br/archives/KH-Blackline-Script-Medium.woff') format('woff'),
+    url('https://cololido.com.br/archives/KH-Blackline-Script-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    }
+    
+    
+    body, h1, h2, h3, h4, h5, h6{font-family: farm-new,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #5E6971;}
+    
+    a, a:hover{
+    transition: .8s;}
+    
+    .menu_item {
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 500;
+    }
+    
+    #headerinterno {
+    position: absolute;}
+    
+    .navbar-nav>li>.menu_item::after {
+    content: '';
+    display: block;
+    background: url(https://cololido.com.br/images/home/volta-baixo.svg);
+    background-size: contain;
+    width: 45px;
+    background-repeat: no-repeat;
+    height: 25px;
+    margin: 0 auto;
+    float: none;
+    margin-top: 10px;
+    transition: .5s;
+    }
+    .navbar-nav>li>.menu_item:hover::after {
+    margin-top: 0px;
+    }
+    
+    .navbar-nav>li>.menu_item::before {
+    content: '';
+    display: block;
+    background: url(https://cololido.com.br/images/home/volta.svg);
+    background-size: contain;
+    width: 45px;
+    background-repeat: no-repeat;
+    transform: rotateX(180deg);
+    height: 25px;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    transition: .5s;
+    }
+    .navbar-nav>li>.menu_item:hover::before {
+    margin-bottom: 0px;
+    }
+    
+    .navbar-toggle .icon-bar {
+    border-color: #3f3f3f !important;}
+    
+    
+    .flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;}
+    
+    .wrap {
+    display: flex;
+    flex-wrap: wrap;}
+    
+    .cover {
+    background-size: cover;}
+    
+    .contain {
+    background-size: contain;}
+    
+    .botao1 .btn{
+    width: auto;
+    height: auto;
+    font-weight: bold;
+    letter-spacing: 3px;
+    background-color: #ffeedf;
+    color: #5e6971;
+    white-space: pre-wrap;
+    transition: .8s;}
+    
+    .botao1 .btn:hover {
+    background-color: #5E6971;
+    color: white;  transition: .8s;}
+    
+    .botao2 .btn{
+    width: auto;
+    height: auto;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #5e6971;
+    background-color: #c2e5f9;
+    white-space: pre-wrap;
+    transition: .8s;}
+    
+    .botao2 .btn:hover {
+    background-color: #5e6971;
+    color: white;transition: .8s;}
+    
+    .botaod .btn{
+    margin: 0 0 0 auto;}
+    
+    .botaoc .btn{
+    margin: 0 auto;
+    display: table;
+    float: none;}
+    
+    .shadow {
+    -webkit-box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.26);
+    box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.26);}
+    
+    @media (max-width: 767px) {
+    .m50 {font-size: 50px !important;}
+    .m40 {font-size: 40px !important;}
+    .m45 {font-size: 45px !important;}
+    .m35{font-size: 35px !important;}
+    .m30{font-size: 30px !important;}
+    .m17{font-size: 17px !important;}}
+    
+    .icon-bar{
+    border-color: gray !important;}
+    .navbar-toggle {
+    float: right;
+    border: 0px;}
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #00000026;
+    border-radius: 0;}
+    
+    @media (min-width: 992px) {.meia-largura-esq {
+    width: 485px;
+    margin: 0 0 0 auto;}}
+    
+    @media (min-width: 1170px) {.meia-largura-esq {
+    width: 585px;
+    margin: 0 0 0 auto;}}
+    
+    @media (min-width: 992px) {.meia-largura-dir {
+    width: 485px;
+    margin: 0 auto 0 0;}}
+    
+    @media (min-width: 1170px) {.meia-largura-dir {
+    width: 585px;
+    margin: 0 auto 0 0;}}
+    
+    
+    .delay1 {
+    animation-delay: 0.5s;
+    }
+    .delay2 {
+    animation-delay: 1s;
+    }
+    .delay3 {
+    animation-delay: 1.5s;
+    }
+    
+    #topofixo{
+    position: fixed;
+    z-index: 999999;
+    }
+    
+    .act {
+    border: 0;
+    background: transparent;
+    }
+    
+    .noact {
+    top: 0;
+    background: rgba(194, 229, 249, 0.95) !important;
+    }
+    
+    .act, .noact{
+    transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    }
+    
+    
+    .navbar-brand {
+    padding: 0;
+    }
+    
+    @media (max-width: 991px) {
+    .navbar-header {
+    float: none;
+    }
+    .navbar-left,.navbar-right {
+    float: none !important;
+    }
+    .navbar-toggle {
+    display: block;
+    }
+    .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+    display: none!important;
+    }
+    
+    .navbar-nav {
+    float: none!important;
+    margin-top: 7.5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+    .navbar-nav>li {
+    float: none;
+    }
+    .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    }
+    .collapse.in{
+    display:block !important;
+    }
+    
+    .navbar-brand {
+    display: inline-block;
+    float: none;
+    }
+    
+    .navbar-form.form-inline {
+    display: inline-block;
+    border-color: transparent;
+    margin: 4px;
+    padding: 5px;
+    }
+    
+    .navbar-form .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    }
+    
+    }
+    .navbar-nav .btn 
+{width: auto;
+background: #c2e5f9;
+font-weight: 500;
+font-size: 16px !important;
+color: #5e6971;
+padding: 15px 20px !important;
+border: 2px solid white;
+text-transform: uppercase;
+margin: 15px;}
+
+.navbar-nav .btn:hover {    background: white;
+color: #a88ba7;}.hint {
+display: flex;
+flex-wrap: wrap;}
+
+.z9 {
+z-index: 9;}
+#_615543031dec2_1632977667:after{
+    content: '';
+    background: url('/IMG/teste2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 25vw;
+    z-index: 4;
+    animation: float 6s ease-in-out infinite;}
+    
+    #_615544393861b_1632977977 {
+    z-index: 5;}
+    
+    
+    #_615543031dec2_1632977667{
+    position: relative;}
+    
+    @keyframes float {
+    0% {
+    transform: translatey(5px);
+    }
+    50% {
+    transform: translatey(20px);
+    }
+    100% {
+    transform: translatey(5px);
+    }
+    }
+    
+    
+    @-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    }
+    to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+    }
+    @keyframes rotating {
+    from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    }
+    to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+    }
+    .rotating, .sabores img:hover {
+    -webkit-animation: rotating 6s linear infinite;
+    -moz-animation: rotating 6s linear infinite;
+    -ms-animation: rotating 6s linear infinite;
+    -o-animation: rotating 6s linear infinite;
+    animation: rotating 6s linear infinite;
+    }
+    
+    .owl-dots .owl-dot.active span, .owl-dots .owl-dot:hover span {
+    background: #ffffff;
+    }
+    
+    .owl-dots .owl-dot span {
+    background: #ffffff9e;}
+    
+    #_9273358330_1633054647 a:hover #_608226998_1633054647 {
+    background-color: #ffe0c3;
+    transition: .8s;}
+    
+    #_608226998_1633054647 {
+    transition: .8s;}
+    
+    #contato input{
+    padding: 15px 20px !important;
+    height: auto !important;
+    font-size: 15px;}
+    
+    #contato textarea {
+    padding: 15px 20px !important;
+    height: 200px !important;
+    font-size: 15px;}
+    .section {
+        padding: 50px;
+    }
+    .scroll-down, .arrow {
+        cursor: pointer;
+    }
+    .interactive-title {
+        font-size: 2.5em;
+        color: #333;
+        position: relative;
+        display: inline-block;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .interactive-title:hover {
+        color: #ff4081;
+        transform: scale(1.1);
+    }
+
+    .highlight {
+        color: #ff4081;
+    }
+    /* Seu CSS aqui */
+    .section {
+            padding: 50px;
+        }
+        .scroll-down, .arrow {
+            cursor: pointer;
+        }
+        .bloco-btn .btn {
+            width: 100%;
+            background: #c2e5f9;
+            font-weight: 500;
+            font-size: 20px !important;
+            color: #5e6971;
+            padding: 20px 25px !important;
+            border: 2px solid white;
+            text-transform: uppercase;
+            margin: 20px;
+            }
+            
+            .bloco-btn .btn:hover {
+            background: white;
+            color: #a88ba7;
+            border: 2px solid #c2e5f9 !important;
+            }
