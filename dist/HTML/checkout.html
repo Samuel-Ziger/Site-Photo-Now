@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento</title>
+    <style>
+        /* Estilo básico para a página de pagamento */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #cart-summary {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pagamento</h1>
+
+    <!-- Resumo do Carrinho -->
+    <div id="cart-summary">
+        Total da Compra: R$ <span id="cart-total">0.00</span>
+    </div>
+
+    <!-- Formulário de Pagamento -->
+    <form id="paymentForm">
+        <!-- Seleção do Método de Pagamento -->
+        <label for="paymentMethod">Método de Pagamento:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+            <option value="credit">Crédito</option>
+            <option value="debit">Débito</option>
+            <option value="pix">Pix</option>
+        </select>
+
+        <!-- Detalhes do Cartão -->
+        <div id="cardDetails">
+            <label for="cardNumber">Número do Cartão:</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="Número do Cartão">
+
+            <label for="cardExpiry">Validade (MM/AA):</label>
+            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/AA">
+
+            <label for="cardCVC">CVC:</label>
+            <input type="text" id="cardCVC" name="cardCVC" placeholder="CVC">
+        </div>
+
+        <!-- Botão de Envio -->
+        <button type="submit" id="payButton" disabled>Pagar Agora</button>
+    </form>
+
+    <script>
+        // 🛒 Carrega os produtos do carrinho e exibe o total
+        function loadCartTotal() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let totalAmount = cart.reduce((sum, item) => sum + item.quantity * item.price, 0).toFixed(2);
+
+            document.getElementById('cart-total').textContent = totalAmount;
+
+            // Desativa o botão de pagamento se o carrinho estiver vazio
+            document.getElementById('payButton').disabled = cart.length === 0;
+        }
+
+        // 🎯 Alterna os campos do cartão dependendo do método de pagamento
+        document.getElementById('paymentMethod').addEventListener('change', function() {
+            document.getElementById('cardDetails').style.display = (this.value === 'pix') ? 'none' : 'block';
+        });
+
+        // 🛠️ Função para processar pagamento
+        document.getElementById('paymentForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let totalAmount = cart.reduce((sum, item) => sum + item.quantity * item.price, 0).toFixed(2);
+
+            const formData = new FormData(event.target);
+            const paymentMethod = formData.get('paymentMethod');
+            let paymentDetails;
+
+            if (paymentMethod === 'pix') {
+                // 💰 Pagamento via PIX
+                paymentDetails = {
+                    method: 'pix',
+                    calendario: { expiracao: 3600 },
+                    devedor: {
+                        cnpj: '12345678000195',
+                        nome: 'Empresa de Serviços SA'
+                    },
+                    valor: {
+                        original: totalAmount,
+                        modalidadeAlteracao: 1
+                    },
+                    chave: 'sua-chave-pix-aqui',
+                    solicitacaoPagador: 'Pagamento pelo e-commerce',
+                    infoAdicionais: cart.map(item => ({
+                        nome: item.name,
+                        valor: `Quantidade: ${item.quantity}, Preço: R$${item.price}`
+                    }))
+                };
+            } else {
+                // 💳 Pagamento via Cartão
+                paymentDetails = {
+                    method: paymentMethod,
+                    total: totalAmount,
+                    cardNumber: formData.get('cardNumber'),
+                    cardExpiry: formData.get('cardExpiry'),
+                    cardCVC: formData.get('cardCVC')
+                };
+            }
+
+            // 🚀 Envia os Dados para o Backend
+            const response = await fetch('/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(paymentDetails)
+            });
+
+            const result = await response.json();
+
+            if (result.status.includes('sucesso')) {
+                alert('Pagamento realizado com sucesso!');
+                localStorage.removeItem('cart'); // 🛒 Limpa o carrinho após pagamento
+                window.location.href = '/confirmation.html'; // ✅ Redireciona para página de confirmação
+            } else {
+                alert('Falha no pagamento. Tente novamente.');
+            }
+        });
+
+        // 🔄 Carrega o total do carrinho ao abrir a página
+        loadCartTotal();
+    </script>
+
+</body>
+</html>
