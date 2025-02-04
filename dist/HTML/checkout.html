@@ -61,6 +61,10 @@
             font-size: 1.2em;
             margin-bottom: 20px;
         }
+        body {
+            background: url('/IMG/teste2.png') no-repeat center center fixed;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
@@ -116,68 +120,74 @@
         });
 
         // 🛠️ Função para processar pagamento
-        document.getElementById('paymentForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
 
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let totalAmount = cart.reduce((sum, item) => sum + item.quantity * item.price, 0).toFixed(2);
+    // 🔹 Recupera o total da compra e o frete do localStorage
+    function carregarTotalDoCheckout() {
+        let totalFinal = localStorage.getItem('totalFinal') || "0.00";
+        let frete = localStorage.getItem('frete') || "0.00";
 
-            const formData = new FormData(event.target);
-            const paymentMethod = formData.get('paymentMethod');
-            let paymentDetails;
+        document.getElementById('cart-total').textContent = totalFinal;
+        document.getElementById('frete-valor').textContent = frete;
+    }
 
-            if (paymentMethod === 'pix') {
-                // 💰 Pagamento via PIX
-                paymentDetails = {
-                    method: 'pix',
-                    calendario: { expiracao: 3600 },
-                    devedor: {
-                        cnpj: '12345678000195',
-                        nome: 'Empresa de Serviços SA'
-                    },
-                    valor: {
-                        original: totalAmount,
-                        modalidadeAlteracao: 1
-                    },
-                    chave: 'sua-chave-pix-aqui',
-                    solicitacaoPagador: 'Pagamento pelo e-commerce',
-                    infoAdicionais: cart.map(item => ({
-                        nome: item.name,
-                        valor: `Quantidade: ${item.quantity}, Preço: R$${item.price}`
-                    }))
-                };
-            } else {
-                // 💳 Pagamento via Cartão
-                paymentDetails = {
-                    method: paymentMethod,
-                    total: totalAmount,
-                    cardNumber: formData.get('cardNumber'),
-                    cardExpiry: formData.get('cardExpiry'),
-                    cardCVC: formData.get('cardCVC')
-                };
-            }
+    document.getElementById('paymentForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-            // 🚀 Envia os Dados para o Backend
-            const response = await fetch('/checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(paymentDetails)
-            });
+        let totalFinal = parseFloat(localStorage.getItem('totalFinal')) || 0.00;
 
-            const result = await response.json();
+        if (totalFinal <= 0) {
+            alert("Erro: Total inválido. Verifique seu carrinho.");
+            return;
+        }
 
-            if (result.status.includes('sucesso')) {
-                alert('Pagamento realizado com sucesso!');
-                localStorage.removeItem('cart'); // 🛒 Limpa o carrinho após pagamento
-                window.location.href = '/confirmation.html'; // ✅ Redireciona para página de confirmação
-            } else {
-                alert('Falha no pagamento. Tente novamente.');
-            }
+        const formData = new FormData(event.target);
+        const paymentMethod = formData.get('paymentMethod');
+        let paymentDetails;
+
+        if (paymentMethod === 'pix') {
+            paymentDetails = {
+                method: 'pix',
+                calendario: { expiracao: 3600 },
+                devedor: {
+                    cnpj: '12345678000195',
+                    nome: 'Empresa de Serviços SA'
+                },
+                valor: { original: totalFinal.toFixed(2) },
+                chave: 'sua-chave-pix-aqui',
+                solicitacaoPagador: 'Pagamento pelo e-commerce'
+            };
+        } else {
+            paymentDetails = {
+                method: paymentMethod,
+                total: totalFinal.toFixed(2),
+                cardNumber: formData.get('cardNumber'),
+                cardExpiry: formData.get('cardExpiry'),
+                cardCVC: formData.get('cardCVC')
+            };
+        }
+
+        const response = await fetch('/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(paymentDetails)
         });
 
-        // 🔄 Carrega o total do carrinho ao abrir a página
-        loadCartTotal();
-    </script>
+        const result = await response.json();
+
+        if (result.status.includes('sucesso')) {
+            alert('Pagamento realizado com sucesso!');
+            localStorage.removeItem('cart');
+            localStorage.removeItem('totalFinal');
+            localStorage.removeItem('frete');
+            window.location.href = '/confirmation.html';
+        } else {
+            alert('Falha no pagamento. Tente novamente.');
+        }
+    });
+
+    carregarTotalDoCheckout();
+</script>
+
 
 </body>
 </html>

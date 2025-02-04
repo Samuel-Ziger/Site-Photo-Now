@@ -1,0 +1,8 @@
+{
+    "method": "credit",
+    "total": "100.00",
+    "cardNumber": "5155901222280001",
+    "cardExpiry": "12/25",
+    "cardCVC": "123",
+    "cardHolder": "Nome Cliente"
+}

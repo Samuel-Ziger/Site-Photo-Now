@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Carrinho de Compras</title>
     <style>
-        /* Estilo básico para a página de carrinho */
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -27,9 +26,9 @@
             border-bottom: 1px solid #ddd;
         }
 
-        #cart-total {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+        #cart-total, #frete-total, #total-final {
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
 
         #checkout-btn {
@@ -46,10 +45,6 @@
             cursor: not-allowed;
         }
 
-        #checkout-btn:hover {
-            background-color: #45a049;
-        }
-
         .remove-btn {
             background-color: red;
             color: white;
@@ -60,6 +55,44 @@
 
         .remove-btn:hover {
             background-color: darkred;
+        }
+
+        #cep-form {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button.toggle-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button.toggle-btn.active {
+            background-color: gray;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -76,13 +109,50 @@
                 <th>Ação</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Aqui os itens do carrinho serão inseridos dinamicamente -->
-        </tbody>
+        <tbody></tbody>
     </table>
+
     <div id="cart-total">
-        Total do Carrinho: R$ <span id="total-amount">0.00</span>
+        Total da Compra: R$ <span id="total-amount">0.00</span>
     </div>
+
+    <!-- Formulário de CEP e Endereço -->
+    <div id="cep-form">
+        <h3>Calcular Frete</h3>
+        <label for="cep">Digite seu CEP:</label>
+        <input type="text" id="cep" name="cep" placeholder="Ex: 01001000" required>
+
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" readonly>
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro" readonly>
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" readonly>
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" readonly>
+
+        <!-- Campo Número com opção "Sem Número" -->
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" name="numero">
+        <button type="button" id="sem-numero" class="toggle-btn">Sem Número</button>
+
+        <!-- Campo Complemento com opção "Sem Complemento" -->
+        <label for="complemento">Complemento:</label>
+        <input type="text" id="complemento" name="complemento">
+        <button type="button" id="sem-complemento" class="toggle-btn">Sem Complemento</button>
+
+        <div id="frete-total">
+            Frete: R$ <span id="frete-valor">0.00</span>
+        </div>
+
+        <div id="total-final">
+            Total com Frete: R$ <span id="total-com-frete">0.00</span>
+        </div>
+    </div>
+
     <button id="checkout-btn" disabled>Finalizar Compra</button>
 
     <script>
@@ -90,12 +160,12 @@
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let cartTable = document.querySelector('#cart tbody');
             cartTable.innerHTML = '';
-
+    
             let totalAmount = 0;
-
+    
             cart.forEach((item, index) => {
                 let row = document.createElement('tr');
-
+    
                 row.innerHTML = `
                     <td>${item.name}</td>
                     <td>${item.quantity}</td>
@@ -103,35 +173,78 @@
                     <td>R$ ${(item.quantity * item.price).toFixed(2)}</td>
                     <td><button class="remove-btn" data-index="${index}">Remover</button></td>
                 `;
-
+    
                 cartTable.appendChild(row);
                 totalAmount += item.quantity * item.price;
             });
-
+    
             document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
-
-            // Se o carrinho estiver vazio, desativa o botão de checkout
             document.getElementById('checkout-btn').disabled = cart.length === 0;
+            atualizarTotalComFrete();
         }
-
-        // Evento de remoção de item
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('remove-btn')) {
-                let index = event.target.getAttribute('data-index');
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                cart.splice(index, 1); // Remove o item do array
-                localStorage.setItem('cart', JSON.stringify(cart)); // Atualiza o localStorage
-                updateCart(); // Atualiza a exibição do carrinho
+    
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            let totalFinal = parseFloat(document.getElementById('total-com-frete').textContent);
+            let frete = parseFloat(document.getElementById('frete-valor').textContent);
+    
+            if (isNaN(totalFinal) || totalFinal <= 0) {
+                alert("Erro: Total inválido. Verifique o carrinho e o frete.");
+                return;
+            }
+    
+            // 🔹 Salva os valores no localStorage para o checkout
+            localStorage.setItem('totalFinal', totalFinal.toFixed(2));
+            localStorage.setItem('frete', frete.toFixed(2));
+    
+            window.location.href = 'checkout.html'; // Redireciona para checkout
+        });
+    
+        document.getElementById('cep').addEventListener('blur', async function() {
+            let cep = this.value.replace(/\D/g, '');
+            if (cep.length !== 8) {
+                alert('CEP inválido!');
+                return;
+            }
+    
+            try {
+                let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                let data = await response.json();
+    
+                if (data.erro) {
+                    alert('CEP não encontrado!');
+                    return;
+                }
+    
+                document.getElementById('rua').value = data.logradouro;
+                document.getElementById('bairro').value = data.bairro;
+                document.getElementById('cidade').value = data.localidade;
+                document.getElementById('estado').value = data.uf;
+    
+                calcularFrete(data.uf);
+            } catch (error) {
+                alert('Erro ao buscar CEP!');
             }
         });
-
-        // Evento de checkout
-        document.getElementById('checkout-btn').addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-
-        // Atualiza o carrinho ao carregar a página
+    
+        function calcularFrete(estado) {
+            let totalCompra = parseFloat(document.getElementById('total-amount').textContent);
+            let frete = {'SP': 10, 'RJ': 12, 'MG': 15, 'ES': 15, 'OUTROS': 25}[estado] || 25;
+            if (totalCompra >= 150) frete = 0;
+    
+            document.getElementById('frete-valor').textContent = frete.toFixed(2);
+            atualizarTotalComFrete();
+        }
+    
+        function atualizarTotalComFrete() {
+            let totalCompra = parseFloat(document.getElementById('total-amount').textContent);
+            let frete = parseFloat(document.getElementById('frete-valor').textContent);
+            let totalFinal = totalCompra + frete;
+            document.getElementById('total-com-frete').textContent = totalFinal.toFixed(2);
+        }
+    
         updateCart();
     </script>
+    
+
 </body>
 </html>

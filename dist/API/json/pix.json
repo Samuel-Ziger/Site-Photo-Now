@@ -1,0 +1,8 @@
+{
+    "method": "pix",
+    "calendario": { "expiracao": 3600 },
+    "devedor": { "cnpj": "12345678000195", "nome": "Empresa Teste" },
+    "valor": { "original": "50.00" },
+    "chave": "chave-pix-aqui",
+    "solicitacaoPagador": "Pagamento da compra"
+}
