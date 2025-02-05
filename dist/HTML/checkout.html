@@ -76,27 +76,31 @@
         Total da Compra: R$ <span id="cart-total">0.00</span>
     </div>
 
-    <!-- Formulário de Pagamento -->
-    <form id="paymentForm">
-        <!-- Seleção do Método de Pagamento -->
-        <label for="paymentMethod">Método de Pagamento:</label>
-        <select id="paymentMethod" name="paymentMethod" required>
-            <option value="credit">Crédito</option>
-            <option value="debit">Débito</option>
-            <option value="pix">Pix</option>
-        </select>
+  <!-- Seleção do Método de Pagamento -->
+<label for="paymentMethod">Método de Pagamento:</label>
+<select id="paymentMethod" name="paymentMethod" required>
+    <option value="credit">Cartão de Crédito</option>
+    <option value="debit">Cartão de Débito</option>
+    <option value="pix">Pix</option>
+    <option value="boleto">Boleto Bancário</option>
+</select>
 
-        <!-- Detalhes do Cartão -->
-        <div id="cardDetails">
-            <label for="cardNumber">Número do Cartão:</label>
-            <input type="text" id="cardNumber" name="cardNumber" placeholder="Número do Cartão">
+<!-- Campos do Cartão (somem quando o usuário seleciona "Boleto" ou "Pix") -->
+<div id="cardDetails">
+    <label for="cardNumber">Número do Cartão:</label>
+    <input type="text" id="cardNumber" name="cardNumber" placeholder="Número do Cartão">
 
-            <label for="cardExpiry">Validade (MM/AA):</label>
-            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/AA">
+    <label for="cardExpiry">Validade (MM/AA):</label>
+    <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/AA">
 
-            <label for="cardCVC">CVC:</label>
-            <input type="text" id="cardCVC" name="cardCVC" placeholder="CVC">
-        </div>
+    <label for="cardCVC">CVC:</label>
+    <input type="text" id="cardCVC" name="cardCVC" placeholder="CVC">
+</div>
+
+<!-- Área para Exibir o Boleto Gerado -->
+<div id="boletoArea" style="display: none;">
+    <p><strong>Boleto gerado:</strong> <a id="boletoLink" href="#" target="_blank">Clique aqui para pagar</a></p>
+</div>
 
         <!-- Botão de Envio -->
         <button type="submit" id="payButton" disabled>Pagar Agora</button>
@@ -188,6 +192,56 @@
     carregarTotalDoCheckout();
 </script>
 
+<script>
+    document.getElementById('paymentMethod').addEventListener('change', function () {
+        document.getElementById('boletoArea').style.display = (this.value === 'boleto') ? 'block' : 'none';
+    });
 
+    document.getElementById('paymentForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        let totalFinal = parseFloat(localStorage.getItem('totalFinal')) || 0.00;
+        const formData = new FormData(event.target);
+        const paymentMethod = formData.get('paymentMethod');
+        let paymentDetails = { method: paymentMethod, total: totalFinal.toFixed(2) };
+
+        if (paymentMethod === 'boleto') {
+            const response = await fetch('/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(paymentDetails)
+            });
+
+            const result = await response.json();
+
+            if (result.status === "Boleto gerado com sucesso!") {
+                document.getElementById('boletoLink').href = result.boleto_url;
+                document.getElementById('boletoArea').style.display = 'block';
+                alert("Boleto gerado com sucesso! Clique no link para visualizar.");
+            } else {
+                alert("Erro ao gerar boleto. Tente novamente.");
+            }
+        } else {
+            // Outras formas de pagamento continuam funcionando normalmente
+        }
+    });
+</script>
+<script>
+    document.getElementById('paymentMethod').addEventListener('change', function () {
+        const cardDetails = document.getElementById('cardDetails');
+        const boletoArea = document.getElementById('boletoArea');
+
+        if (this.value === 'boleto') {
+            cardDetails.style.display = 'none';  // Esconde os campos do cartão
+            boletoArea.style.display = 'block';  // Exibe a área do boleto
+        } else if (this.value === 'credit' || this.value === 'debit') {
+            cardDetails.style.display = 'block'; // Exibe os campos do cartão
+            boletoArea.style.display = 'none';   // Esconde a área do boleto
+        } else {
+            cardDetails.style.display = 'none';  // PIX também esconde o cartão
+            boletoArea.style.display = 'none';   // Esconde a área do boleto
+        }
+    });
+</script>
 </body>
 </html>

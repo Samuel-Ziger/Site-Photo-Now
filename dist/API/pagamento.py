@@ -242,3 +242,45 @@ def processar_cartao(request_data):
 
 if __name__ == '__main__':
     app.run(debug=True)
+def processar_boleto(request_data):
+    try:
+        # Criar boleto na API da GetNet
+        boleto_body = {
+            "seller_id": "SEU_SELLER_ID",
+            "order": {
+                "order_id": "PEDIDO_123",
+                "amount": int(float(request_data['total']) * 100)  # GetNet espera o valor em centavos
+            },
+            "customer": {
+                "customer_id": "CUSTOMER_12345",
+                "first_name": "Nome",
+                "last_name": "Sobrenome",
+                "email": "email@cliente.com"
+            },
+            "boleto": {
+                "document_number": "12345678900",
+                "expiration_date": "2025-12-31",
+                "instructions": "Pague este boleto até o vencimento."
+            }
+        }
+
+        boleto_response = requests.post(
+            "https://api.getnet.com.br/v1/payments/boleto",
+            headers={
+                "Authorization": "Bearer SEU_TOKEN_GETNET",
+                "Content-Type": "application/json"
+            },
+            json=boleto_body
+        )
+        boleto_response.raise_for_status()
+
+        boleto_data = boleto_response.json()
+
+        return jsonify({
+            "status": "Boleto gerado com sucesso!",
+            "boleto_url": boleto_data.get("boleto_pdf"),
+            "boleto_code": boleto_data.get("boleto_number")
+        })
+
+    except requests.exceptions.RequestException as e:
+        return jsonify({"status": "Erro ao gerar boleto", "erro": str(e)}), 500
