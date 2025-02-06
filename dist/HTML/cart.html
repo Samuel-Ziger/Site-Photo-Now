@@ -155,96 +155,141 @@
 
     <button id="checkout-btn" disabled>Finalizar Compra</button>
 
-    <script>
-        function updateCart() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let cartTable = document.querySelector('#cart tbody');
-            cartTable.innerHTML = '';
+   <Script>
+     function updateCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartTable = document.querySelector('#cart tbody');
+        cartTable.innerHTML = '';
     
-            let totalAmount = 0;
+        let totalAmount = 0;
     
-            cart.forEach((item, index) => {
-                let row = document.createElement('tr');
+        cart.forEach((item, index) => {
+            let row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td>R$ ${item.price.toFixed(2)}</td>
+                <td>R$ ${(item.quantity * item.price).toFixed(2)}</td>
+                <td><button class="remove-btn" data-index="${index}">Remover</button></td>
+            `;
+            cartTable.appendChild(row);
+            totalAmount += item.quantity * item.price;
+        });
     
-                row.innerHTML = `
-                    <td>${item.name}</td>
-                    <td>${item.quantity}</td>
-                    <td>R$ ${item.price.toFixed(2)}</td>
-                    <td>R$ ${(item.quantity * item.price).toFixed(2)}</td>
-                    <td><button class="remove-btn" data-index="${index}">Remover</button></td>
-                `;
+        document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+        document.getElementById('checkout-btn').disabled = cart.length === 0;
+        atualizarTotalComFrete();
     
-                cartTable.appendChild(row);
-                totalAmount += item.quantity * item.price;
+        document.querySelectorAll('.remove-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let index = this.getAttribute('data-index');
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
             });
+        });
+    }
     
-            document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
-            document.getElementById('checkout-btn').disabled = cart.length === 0;
-            atualizarTotalComFrete();
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+        let totalFinal = parseFloat(document.getElementById('total-com-frete').textContent);
+        let frete = parseFloat(document.getElementById('frete-valor').textContent);
+    
+        if (isNaN(totalFinal) || totalFinal <= 0) {
+            alert("Erro: Total inválido. Verifique o carrinho e o frete.");
+            return;
+        }
+        localStorage.setItem('totalFinal', totalFinal.toFixed(2));
+        localStorage.setItem('frete', frete.toFixed(2));
+        window.location.href = 'checkout.html';
+    });
+    
+    document.getElementById('cep').addEventListener('blur', async function() {
+        let cep = this.value.replace(/\D/g, '');
+        if (cep.length !== 8) {
+            alert('CEP inválido!');
+            return;
         }
     
-        document.getElementById('checkout-btn').addEventListener('click', () => {
-            let totalFinal = parseFloat(document.getElementById('total-com-frete').textContent);
-            let frete = parseFloat(document.getElementById('frete-valor').textContent);
+        try {
+            let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            let data = await response.json();
     
-            if (isNaN(totalFinal) || totalFinal <= 0) {
-                alert("Erro: Total inválido. Verifique o carrinho e o frete.");
+            if (data.erro) {
+                alert('CEP não encontrado!');
                 return;
             }
     
-            // 🔹 Salva os valores no localStorage para o checkout
-            localStorage.setItem('totalFinal', totalFinal.toFixed(2));
-            localStorage.setItem('frete', frete.toFixed(2));
+            document.getElementById('rua').value = data.logradouro;
+            document.getElementById('bairro').value = data.bairro;
+            document.getElementById('cidade').value = data.localidade;
+            document.getElementById('estado').value = data.uf;
+            calcularFrete(data.uf);
+        } catch (error) {
+            alert('Erro ao buscar CEP!');
+        }
+    });
     
-            window.location.href = 'checkout.html'; // Redireciona para checkout
-        });
+    function calcularFrete(estado) {
+        let totalCompra = parseFloat(document.getElementById('total-amount').textContent);
+        let frete = {'SP': 10, 'RJ': 12, 'MG': 15, 'ES': 15, 'OUTROS': 25}[estado] || 25;
+        if (totalCompra >= 150) frete = 0;
+        document.getElementById('frete-valor').textContent = frete.toFixed(2);
+        atualizarTotalComFrete();
+    }
     
-        document.getElementById('cep').addEventListener('blur', async function() {
-            let cep = this.value.replace(/\D/g, '');
-            if (cep.length !== 8) {
-                alert('CEP inválido!');
-                return;
-            }
+    function atualizarTotalComFrete() {
+        let totalCompra = parseFloat(document.getElementById('total-amount').textContent);
+        let frete = parseFloat(document.getElementById('frete-valor').textContent);
+        let totalFinal = totalCompra + frete;
+        document.getElementById('total-com-frete').textContent = totalFinal.toFixed(2);
+    }
     
-            try {
-                let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                let data = await response.json();
+    document.getElementById('sem-numero').addEventListener('click', function() {
+        let inputNumero = document.getElementById('numero');
+        if (inputNumero.value === '') {
+            inputNumero.value = 'Sem Número';
+            inputNumero.setAttribute('readonly', true);
+            this.classList.add('active');
+        } else {
+            inputNumero.value = '';
+            inputNumero.removeAttribute('readonly');
+            this.classList.remove('active');
+        }
+    });
     
-                if (data.erro) {
-                    alert('CEP não encontrado!');
-                    return;
-                }
+    document.getElementById('sem-complemento').addEventListener('click', function() {
+        let inputComplemento = document.getElementById('complemento');
+        if (inputComplemento.value === '') {
+            inputComplemento.value = 'Sem Complemento';
+            inputComplemento.setAttribute('readonly', true);
+            this.classList.add('active');
+        } else {
+            inputComplemento.value = '';
+            inputComplemento.removeAttribute('readonly');
+            this.classList.remove('active');
+        }
+    });
     
-                document.getElementById('rua').value = data.logradouro;
-                document.getElementById('bairro').value = data.bairro;
-                document.getElementById('cidade').value = data.localidade;
-                document.getElementById('estado').value = data.uf;
+    updateCart();
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+        let totalFinal = parseFloat(document.getElementById('total-com-frete').textContent);
+        let frete = parseFloat(document.getElementById('frete-valor').textContent);
     
-                calcularFrete(data.uf);
-            } catch (error) {
-                alert('Erro ao buscar CEP!');
-            }
-        });
-    
-        function calcularFrete(estado) {
-            let totalCompra = parseFloat(document.getElementById('total-amount').textContent);
-            let frete = {'SP': 10, 'RJ': 12, 'MG': 15, 'ES': 15, 'OUTROS': 25}[estado] || 25;
-            if (totalCompra >= 150) frete = 0;
-    
-            document.getElementById('frete-valor').textContent = frete.toFixed(2);
-            atualizarTotalComFrete();
+        if (isNaN(totalFinal) || totalFinal <= 0) {
+            alert("Erro: Total inválido. Verifique o carrinho e o frete.");
+            return;
         }
     
-        function atualizarTotalComFrete() {
-            let totalCompra = parseFloat(document.getElementById('total-amount').textContent);
-            let frete = parseFloat(document.getElementById('frete-valor').textContent);
-            let totalFinal = totalCompra + frete;
-            document.getElementById('total-com-frete').textContent = totalFinal.toFixed(2);
-        }
+        localStorage.setItem('totalFinal', totalFinal.toFixed(2));
+        localStorage.setItem('frete', frete.toFixed(2));
     
-        updateCart();
-    </script>
+        // Limpar carrinho após finalização da compra
+        localStorage.removeItem('cart');
     
-
+        alert("Compra finalizada com sucesso!");
+        window.location.href = 'checkout.html';
+    });
+    
+   </Script>
 </body>
 </html>

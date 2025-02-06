@@ -2,210 +2,82 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pagamento</title>
-    <style>
-        /* Estilo básico para a página de pagamento */
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #cart-summary {
-            text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        body {
-            background: url('/IMG/teste2.png') no-repeat center center fixed;
-            background-size: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+    <div class="container mt-5">
+        <h1 class="text-center">Pagamento</h1>
+        <p class="text-center">Total da Compra: R$ <span id="cart-total">0.00</span></p>
 
-    <h1>Pagamento</h1>
+        <form id="paymentForm">
+            <label for="paymentMethod">Método de Pagamento:</label>
+            <select id="paymentMethod" name="paymentMethod" class="form-control mb-3" required>
+                <option value="credit">Cartão de Crédito</option>
+                <option value="debit">Cartão de Débito</option>
+                <option value="pix">Pix</option>
+                <option value="boleto">Boleto Bancário</option>
+            </select>
 
-    <!-- Resumo do Carrinho -->
-    <div id="cart-summary">
-        Total da Compra: R$ <span id="cart-total">0.00</span>
+            <div id="cardDetails">
+                <label for="cardNumber">Número do Cartão:</label>
+                <input type="text" id="cardNumber" class="form-control mb-2" placeholder="Número do Cartão">
+                <label for="cardExpiry">Validade (MM/AA):</label>
+                <input type="text" id="cardExpiry" class="form-control mb-2" placeholder="MM/AA">
+                <label for="cardCVC">CVC:</label>
+                <input type="text" id="cardCVC" class="form-control mb-2" placeholder="CVC">
+            </div>
+
+            <div id="boletoArea" class="d-none">
+                <p><strong>Boleto gerado:</strong> <a id="boletoLink" href="#" target="_blank">Clique aqui para pagar</a></p>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Pagar Agora</button>
+        </form>
     </div>
 
-  <!-- Seleção do Método de Pagamento -->
-<label for="paymentMethod">Método de Pagamento:</label>
-<select id="paymentMethod" name="paymentMethod" required>
-    <option value="credit">Cartão de Crédito</option>
-    <option value="debit">Cartão de Débito</option>
-    <option value="pix">Pix</option>
-    <option value="boleto">Boleto Bancário</option>
-</select>
-
-<!-- Campos do Cartão (somem quando o usuário seleciona "Boleto" ou "Pix") -->
-<div id="cardDetails">
-    <label for="cardNumber">Número do Cartão:</label>
-    <input type="text" id="cardNumber" name="cardNumber" placeholder="Número do Cartão">
-
-    <label for="cardExpiry">Validade (MM/AA):</label>
-    <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/AA">
-
-    <label for="cardCVC">CVC:</label>
-    <input type="text" id="cardCVC" name="cardCVC" placeholder="CVC">
-</div>
-
-<!-- Área para Exibir o Boleto Gerado -->
-<div id="boletoArea" style="display: none;">
-    <p><strong>Boleto gerado:</strong> <a id="boletoLink" href="#" target="_blank">Clique aqui para pagar</a></p>
-</div>
-
-        <!-- Botão de Envio -->
-        <button type="submit" id="payButton" disabled>Pagar Agora</button>
-    </form>
-
     <script>
-        // 🛒 Carrega os produtos do carrinho e exibe o total
-        function loadCartTotal() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let totalAmount = cart.reduce((sum, item) => sum + item.quantity * item.price, 0).toFixed(2);
-
-            document.getElementById('cart-total').textContent = totalAmount;
-
-            // Desativa o botão de pagamento se o carrinho estiver vazio
-            document.getElementById('payButton').disabled = cart.length === 0;
+        function carregarTotalDoCheckout() {
+            let totalFinal = localStorage.getItem('totalFinal') || "0.00";
+            document.getElementById('cart-total').textContent = totalFinal;
         }
 
-        // 🎯 Alterna os campos do cartão dependendo do método de pagamento
-        document.getElementById('paymentMethod').addEventListener('change', function() {
-            document.getElementById('cardDetails').style.display = (this.value === 'pix') ? 'none' : 'block';
+        document.getElementById('paymentMethod').addEventListener('change', function () {
+            document.getElementById('cardDetails').style.display = (this.value === 'pix' || this.value === 'boleto') ? 'none' : 'block';
+            document.getElementById('boletoArea').classList.toggle('d-none', this.value !== 'boleto');
         });
 
-        // 🛠️ Função para processar pagamento
+        document.getElementById('paymentForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            let totalFinal = parseFloat(localStorage.getItem('totalFinal')) || 0.00;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            let paymentDetails;
 
-    // 🔹 Recupera o total da compra e o frete do localStorage
-    function carregarTotalDoCheckout() {
-        let totalFinal = localStorage.getItem('totalFinal') || "0.00";
-        let frete = localStorage.getItem('frete') || "0.00";
+            if (paymentMethod === 'pix') {
+                paymentDetails = {
+                    method: 'pix',
+                    calendario: { expiracao: 3600 },
+                    devedor: {
+                        cnpj: '12345678000195',
+                        nome: 'Empresa de Serviços SA'
+                    },
+                    valor: { original: totalFinal.toFixed(2) },
+                    chave: 'sua-chave-pix-aqui',
+                    solicitacaoPagador: 'Pagamento pelo e-commerce'
+                };
+            } else if (paymentMethod === 'boleto') {
+                paymentDetails = { method: 'boleto', total: totalFinal.toFixed(2) };
+            } else {
+                paymentDetails = {
+                    method: paymentMethod,
+                    total: totalFinal.toFixed(2),
+                    cardNumber: document.getElementById('cardNumber').value,
+                    cardExpiry: document.getElementById('cardExpiry').value,
+                    cardCVC: document.getElementById('cardCVC').value
+                };
+            }
 
-        document.getElementById('cart-total').textContent = totalFinal;
-        document.getElementById('frete-valor').textContent = frete;
-    }
-
-    document.getElementById('paymentForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        let totalFinal = parseFloat(localStorage.getItem('totalFinal')) || 0.00;
-
-        if (totalFinal <= 0) {
-            alert("Erro: Total inválido. Verifique seu carrinho.");
-            return;
-        }
-
-        const formData = new FormData(event.target);
-        const paymentMethod = formData.get('paymentMethod');
-        let paymentDetails;
-
-        if (paymentMethod === 'pix') {
-            paymentDetails = {
-                method: 'pix',
-                calendario: { expiracao: 3600 },
-                devedor: {
-                    cnpj: '12345678000195',
-                    nome: 'Empresa de Serviços SA'
-                },
-                valor: { original: totalFinal.toFixed(2) },
-                chave: 'sua-chave-pix-aqui',
-                solicitacaoPagador: 'Pagamento pelo e-commerce'
-            };
-        } else {
-            paymentDetails = {
-                method: paymentMethod,
-                total: totalFinal.toFixed(2),
-                cardNumber: formData.get('cardNumber'),
-                cardExpiry: formData.get('cardExpiry'),
-                cardCVC: formData.get('cardCVC')
-            };
-        }
-
-        const response = await fetch('/checkout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(paymentDetails)
-        });
-
-        const result = await response.json();
-
-        if (result.status.includes('sucesso')) {
-            alert('Pagamento realizado com sucesso!');
-            localStorage.removeItem('cart');
-            localStorage.removeItem('totalFinal');
-            localStorage.removeItem('frete');
-            window.location.href = '/confirmation.html';
-        } else {
-            alert('Falha no pagamento. Tente novamente.');
-        }
-    });
-
-    carregarTotalDoCheckout();
-</script>
-
-<script>
-    document.getElementById('paymentMethod').addEventListener('change', function () {
-        document.getElementById('boletoArea').style.display = (this.value === 'boleto') ? 'block' : 'none';
-    });
-
-    document.getElementById('paymentForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        let totalFinal = parseFloat(localStorage.getItem('totalFinal')) || 0.00;
-        const formData = new FormData(event.target);
-        const paymentMethod = formData.get('paymentMethod');
-        let paymentDetails = { method: paymentMethod, total: totalFinal.toFixed(2) };
-
-        if (paymentMethod === 'boleto') {
             const response = await fetch('/checkout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -214,34 +86,18 @@
 
             const result = await response.json();
 
-            if (result.status === "Boleto gerado com sucesso!") {
-                document.getElementById('boletoLink').href = result.boleto_url;
-                document.getElementById('boletoArea').style.display = 'block';
-                alert("Boleto gerado com sucesso! Clique no link para visualizar.");
+            if (result.status.includes('sucesso')) {
+                alert('Pagamento realizado com sucesso!');
+                localStorage.removeItem('cart');
+                localStorage.removeItem('totalFinal');
+                localStorage.removeItem('frete');
+                window.location.href = '/confirmation.html';
             } else {
-                alert("Erro ao gerar boleto. Tente novamente.");
+                alert('Falha no pagamento. Tente novamente.');
             }
-        } else {
-            // Outras formas de pagamento continuam funcionando normalmente
-        }
-    });
-</script>
-<script>
-    document.getElementById('paymentMethod').addEventListener('change', function () {
-        const cardDetails = document.getElementById('cardDetails');
-        const boletoArea = document.getElementById('boletoArea');
+        });
 
-        if (this.value === 'boleto') {
-            cardDetails.style.display = 'none';  // Esconde os campos do cartão
-            boletoArea.style.display = 'block';  // Exibe a área do boleto
-        } else if (this.value === 'credit' || this.value === 'debit') {
-            cardDetails.style.display = 'block'; // Exibe os campos do cartão
-            boletoArea.style.display = 'none';   // Esconde a área do boleto
-        } else {
-            cardDetails.style.display = 'none';  // PIX também esconde o cartão
-            boletoArea.style.display = 'none';   // Esconde a área do boleto
-        }
-    });
-</script>
+        carregarTotalDoCheckout();
+    </script>
 </body>
 </html>

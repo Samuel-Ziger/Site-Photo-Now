@@ -730,3 +730,8 @@ margin: 15px;}
               
               #franquia {
                 position: relative;}
+                @media screen and (max-width: 768px) {
+                  #franquia:before {
+                    height: 8vw;}
+                    display:flex
+                }

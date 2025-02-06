@@ -106,12 +106,16 @@ from flask import Flask, request, jsonify
 import requests
 import json
 
+# Inicializa a aplicação Flask
 app = Flask(__name__)
 
+# Define a rota /checkout que aceita requisições POST
 @app.route('/checkout', methods=['POST'])
 def checkout():
+    # Obtém os dados da requisição em formato JSON
     request_data = request.get_json()
     
+    # Verifica o método de pagamento e chama a função correspondente
     if request_data.get('method') == 'pix':
         return processar_pix(request_data)
     
@@ -120,7 +124,7 @@ def checkout():
 
     return jsonify({"status": "Erro: Método de pagamento inválido."}), 400
 
-
+# Função para processar pagamento via PIX
 def processar_pix(request_data):
     try:
         # Solicita Token de Autenticação
@@ -157,7 +161,7 @@ def processar_pix(request_data):
     except requests.exceptions.RequestException as e:
         return jsonify({"status": "Erro no pagamento PIX", "erro": str(e)}), 500
 
-
+# Função para processar pagamento via cartão
 def processar_cartao(request_data):
     try:
         # Tokenização do cartão
@@ -239,9 +243,11 @@ def processar_cartao(request_data):
     except requests.exceptions.RequestException as e:
         return jsonify({"status": "Erro no pagamento com cartão", "erro": str(e)}), 500
 
-
+# Inicia a aplicação
 if __name__ == '__main__':
     app.run(debug=True)
+
+# Função para processar boleto (aparentemente não conectada à rota /checkout)
 def processar_boleto(request_data):
     try:
         # Criar boleto na API da GetNet

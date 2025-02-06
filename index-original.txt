@@ -479,7 +479,7 @@
                             <a style="color: #5e6971;" href="https://www.photonow.com.br/" target="_blank">&#8594; Seja um franqueado</a>
                         </span><br>
                         <span style="color: #5e6971;">
-                            <a style="color: #5e6971;" href="\HTML\modelostotens.html" #contato>&#8594; Área do Parceiro</a>
+                            <a style="color: #5e6971;" href="\HTML\areadoparceiro.html" #contato>&#8594; Área do Parceiro</a>
                         </span><br>
                     </span>
                 </p>
